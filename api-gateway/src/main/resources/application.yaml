@@ -9,11 +9,13 @@ spring:
             locator:
               enabled: true
               lower-case-service-id: true
-  #          routes:
-  #            - id: auth-service
-  #              uri: lb://auth-service
-  #              predicates:
-  #                - Path = /api/login/**
+          routes:
+            - id: AUTH-SERVICE
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/login/**
+              filters:
+                - RewritePath=/api/login/(?<segment>.*), /api/login/${segment}
   #            - id: employee-service
   #              uri: lb://employee-service
   #              predicates:

@@ -1,3 +1,28 @@
 spring:
   application:
     name: auth-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db
+    username: root
+    password: ${db_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.hostname}
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: ${secret_signing_key}
+
+server:
+  port: 8084
