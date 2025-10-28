@@ -9,11 +9,13 @@ spring:
             locator:
               enabled: true
               lower-case-service-id: true
-  #          routes:
-  #            - id: auth-service
-  #              uri: lb://auth-service
-  #              predicates:
-  #                - Path = /api/login/**
+          routes:
+            - id: AUTH-SERVICE
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/login/**
+              filters:
+                - RewritePath=/api/login/(?<segment>.*), /api/login/${segment}
   #            - id: employee-service
   #              uri: lb://employee-service
   #              predicates:
@@ -28,6 +30,11 @@ jwt:
   secret: ${secret_signing_key}
 
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: ${spring.cloud.client.ip-address}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    hostname: ${spring.cloud.client.hostname}
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
