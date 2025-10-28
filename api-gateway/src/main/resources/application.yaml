@@ -9,7 +9,29 @@ spring:
             locator:
               enabled: true
               lower-case-service-id: true
+  #          routes:
+  #            - id: auth-service
+  #              uri: lb://auth-service
+  #              predicates:
+  #                - Path = /api/login/**
+  #            - id: employee-service
+  #              uri: lb://employee-service
+  #              predicates:
+  #                - Path = /api/employees/**, /api/teams/**
+  #              filters:
+  #                - JwtAuthenticationFilter
 
 server:
   port: 8080
+
+jwt:
+  secret: ${secret_signing_key}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
 
