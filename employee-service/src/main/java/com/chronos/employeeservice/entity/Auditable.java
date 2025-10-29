@@ -1,4 +1,4 @@
-package com.chronos.authservice.entity;
+package com.chronos.employeeservice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

@@ -16,12 +16,12 @@ spring:
                 - Path=/api/login/**
               filters:
                 - RewritePath=/api/login/(?<segment>.*), /api/login/${segment}
-  #            - id: employee-service
-  #              uri: lb://employee-service
-  #              predicates:
-  #                - Path = /api/employees/**, /api/teams/**
-  #              filters:
-  #                - JwtAuthenticationFilter
+            - id: EMPLOYEE-SERVICE
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/api/employees/**, /api/teams/**
+              filters:
+                - JwtAuthenticationFilter
 
 server:
   port: 8080
