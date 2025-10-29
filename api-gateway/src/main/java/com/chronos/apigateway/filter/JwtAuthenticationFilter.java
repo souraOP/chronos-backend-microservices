@@ -44,12 +44,14 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
                 String username = claims.getSubject();
                 String role =claims.get("role", String.class);
+                String uuid = claims.get("uuid", String.class);
+                String employeeId = claims.get("employeeId", String.class);
 
                 ServerHttpRequest newRequest = exchange.getRequest().mutate()
-                        .header("X-User-Email", claims.getSubject())
-                        .header("X-User-Role", claims.get("role", String.class))
-                        .header("X-User-UUID", claims.get("uuid", String.class))
-                        .header("X-User-EmployeeId", claims.get("employeeId", String.class))
+                        .header("X-User-Email", username)
+                        .header("X-User-Role", role)
+                        .header("X-User-UUID", uuid)
+                        .header("X-User-EmployeeId", employeeId)
                         .build();
 
                 return chain.filter(exchange.mutate().request(newRequest).build());
