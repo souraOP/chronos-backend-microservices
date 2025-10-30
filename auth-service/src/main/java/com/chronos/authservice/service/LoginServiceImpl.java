@@ -10,6 +10,7 @@ import com.chronos.authservice.feign.EmployeeClient;
 import com.chronos.authservice.repository.LoginRepository;
 import com.chronos.authservice.service.auth.JwtService;
 import com.chronos.authservice.service.interfaces.LoginService;
+import com.chronos.authservice.util.LoginMapper;
 import com.chronos.authservice.util.NanoIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -120,15 +121,15 @@ public class LoginServiceImpl implements LoginService {
 
         return new CreateLoginCredentialResponseDTO(loginCredential.getLoginCredentialId(), LoginConstants.LOGIN_DETAILS_CREATED, loginCredential.getDisplayEmployeeId());
     }
-//
-//    @Override
-//    public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
-//        LoginByEmailView loginCredential = loginRepository.findByEmail(email)
-//                .orElseThrow(() -> new ResourceNotFoundException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
-//
-//        return LoginMapper.loginViewToDto(loginCredential);
-//    }
-//
+
+    @Override
+    public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
+        LoginCredential loginCredential = loginRepository.findByEmailView(email)
+                .orElseThrow(() -> new RuntimeException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
+
+        return LoginMapper.loginEntityToDto(loginCredential);
+    }
+
     @Override
     @Transactional
     public ChangePasswordResponseDTO changePassword(String email, ChangePasswordDTO changePasswordDTO) {

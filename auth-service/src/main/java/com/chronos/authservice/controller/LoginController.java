@@ -4,6 +4,7 @@ import com.chronos.authservice.dto.*;
 import com.chronos.authservice.service.LoginServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,19 +43,12 @@ public class LoginController {
         return ResponseEntity.ok(savedLoginDetails);
     }
 
-    // fetching all the login credentials from the database
-//    @GetMapping
-//    public ResponseEntity<List<GetAllLoginCredentialsDTO>> getAllLoginCredentials() {
-//        List<GetAllLoginCredentialsDTO> getAllLoginDetails = loginService.getAllLoginCredentials();
-//        return ResponseEntity.ok(getAllLoginDetails);
-//    }
-//
-//    // fetching login credentials by their employeeid
-//    @GetMapping("/{email}")
-//    public ResponseEntity<GetAllLoginCredentialsDTO> getLoginCredentialById(@PathVariable String email) {
-//        GetAllLoginCredentialsDTO getLoginDetailsByEmail = loginService.getLoginCredentialsByEmail(email);
-//        return new ResponseEntity<>(getLoginDetailsByEmail, HttpStatus.OK);
-//    }
+    // fetching login credentials by their employeeid
+    @GetMapping("/{email}")
+    public ResponseEntity<GetAllLoginCredentialsDTO> getLoginCredentialById(@PathVariable String email) {
+        GetAllLoginCredentialsDTO getLoginDetailsByEmail = loginService.getLoginCredentialsByEmail(email);
+        return new ResponseEntity<>(getLoginDetailsByEmail, HttpStatus.OK);
+    }
 //
 //    // changing the passwordHash
 //    // patch request for changing the passwordHash

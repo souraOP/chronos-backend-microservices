@@ -10,18 +10,28 @@ spring:
               enabled: true
               lower-case-service-id: true
           routes:
-            - id: AUTH-SERVICE
+            - id: AUTH-SERVICE-SECURED
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/api/login/**
+            - id: AUTH-SERVICE-OPEN
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/login
               filters:
-                - RewritePath=/api/login/(?<segment>.*), /api/login/${segment}
-            - id: EMPLOYEE-SERVICE
+                - RewritePath=/api/login, /api/login
+            - id: EMPLOYEE-SERVICE-SECURED
               uri: lb://EMPLOYEE-SERVICE
               predicates:
-                - Path=/api/employees/**, /api/teams/**
+                - Path=/api/employees/**,/api/teams/**
               filters:
                 - JwtAuthenticationFilter
+            - id: EMPLOYEE-SERVICE-OPEN
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/api/employees
+              filters:
+                - RewritePath=/api/employees, /api/employees
 
 server:
   port: 8080
@@ -33,7 +43,7 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: ${spring.cloud.client.ip-address}
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
     hostname: ${spring.cloud.client.hostname}
   client:
     service-url:
@@ -41,4 +51,9 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
 
