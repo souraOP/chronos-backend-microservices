@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public class TeamController {
     }
 
 
-
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/teamSize")
     public ResponseEntity<Integer> getTeamSize(@PathVariable String managerId) {
         int teamSize = teamService.getTeamSize(managerId);
@@ -49,7 +50,7 @@ public class TeamController {
     }
 
 
-
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-members")
     public ResponseEntity<List<EmployeeDTO>> getTeamMembers(@PathVariable String managerId) {
         List<EmployeeDTO> getTeam = teamService.getTeamMembers(managerId);
