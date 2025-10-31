@@ -53,6 +53,7 @@
         <module>attendance-service</module>
         <module>shift-service</module>
         <module>report-service</module>
+        <module>common-lib</module>
     </modules>
 
     <build>

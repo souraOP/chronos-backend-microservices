@@ -1,7 +1,7 @@
 package com.chronos.employeeservice.entity;
 
-import com.chronos.employeeservice.constants.enums.Gender;
-import com.chronos.employeeservice.constants.enums.Role;
+import com.chronos.common.constants.enums.Gender;
+import com.chronos.common.constants.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

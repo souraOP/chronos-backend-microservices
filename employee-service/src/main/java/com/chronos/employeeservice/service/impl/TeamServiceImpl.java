@@ -1,8 +1,8 @@
 package com.chronos.employeeservice.service.impl;
 
 
-import com.chronos.employeeservice.constants.ErrorConstants;
-import com.chronos.employeeservice.constants.UuidErrorConstants;
+import com.chronos.common.constants.ErrorConstants;
+import com.chronos.common.constants.UuidErrorConstants;
 import com.chronos.employeeservice.dto.*;
 import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 import com.chronos.employeeservice.entity.Employee;
@@ -19,8 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.chronos.employeeservice.util.ParseUUID.parseUUID;
-
+import static com.chronos.common.util.ParseUUID.parseUUID;
 
 @Service
 public class TeamServiceImpl implements TeamService {

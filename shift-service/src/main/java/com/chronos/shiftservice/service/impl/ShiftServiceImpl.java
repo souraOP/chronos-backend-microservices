@@ -1,21 +1,21 @@
 package com.chronos.shiftservice.service.impl;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
-import com.chronos.shiftservice.constants.ErrorConstants;
-import com.chronos.shiftservice.constants.UuidErrorConstants;
-import com.chronos.shiftservice.constants.enums.ShiftStatus;
+import com.chronos.common.constants.ErrorConstants;
+import com.chronos.common.constants.UuidErrorConstants;
+import com.chronos.common.constants.enums.ShiftStatus;
+import com.chronos.common.exception.custom.ResourceNotFoundException;
+import com.chronos.common.exception.custom.ShiftNotFoundException;
+import com.chronos.common.util.NanoIdGenerator;
 import com.chronos.shiftservice.dto.EmployeeDTO;
 import com.chronos.shiftservice.dto.shift.CreateNewShiftDTO;
 import com.chronos.shiftservice.dto.shift.CreateShiftDateRequestDTO;
 import com.chronos.shiftservice.dto.shift.ShiftResponseDTO;
 import com.chronos.shiftservice.dto.shift.TeamShiftTableRowDTO;
 import com.chronos.shiftservice.entity.Shift;
-import com.chronos.shiftservice.exception.custom.ResourceNotFoundException;
-import com.chronos.shiftservice.exception.custom.ShiftNotFoundException;
 import com.chronos.shiftservice.feign.EmployeeClient;
 import com.chronos.shiftservice.repository.ShiftRepository;
 import com.chronos.shiftservice.service.ShiftService;
-import com.chronos.shiftservice.utils.NanoIdGenerator;
 import com.chronos.shiftservice.utils.mappers.ShiftMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static com.chronos.shiftservice.utils.ParseUUID.parseUUID;
+import static com.chronos.common.util.ParseUUID.parseUUID;
 
 
 @Service
@@ -56,7 +56,7 @@ public class ShiftServiceImpl implements ShiftService {
         List<EmployeeDTO> teamMembers = employeeClient.getTeamMembers(managerId);
         boolean belongs = teamMembers.stream().anyMatch(e -> empID.equals(e.id()));
 
-        if(!belongs) {
+        if (!belongs) {
             throw new ResourceNotFoundException(ErrorConstants.EMPLOYEE_NOT_IN_MANAGER_TEAM);
         }
         // have to convert it from iso8601 date
@@ -67,7 +67,7 @@ public class ShiftServiceImpl implements ShiftService {
         OffsetDateTime shiftStart = shiftDTO.shiftDate().atTime(shiftDTO.shiftStartTime()).atZone(zone).toOffsetDateTime();
         OffsetDateTime shiftEnd = shiftDTO.shiftDate().atTime(shiftDTO.shiftEndTime()).atZone(zone).toOffsetDateTime();
 
-        if(shiftEnd.isBefore(shiftStart)) {
+        if (shiftEnd.isBefore(shiftStart)) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_SHIFT_TIMING);
         }
 
@@ -127,7 +127,7 @@ public class ShiftServiceImpl implements ShiftService {
     public List<ShiftResponseDTO> getTeamsShiftByManager(String managerId) {
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
 
-        if(team.isEmpty()) {
+        if (team.isEmpty()) {
             return List.of();
         }
 
@@ -144,7 +144,7 @@ public class ShiftServiceImpl implements ShiftService {
     @Override
     public List<TeamShiftTableRowDTO> getTeamShiftsByManagerAndDatePicker(String managerId, LocalDate date) {
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
-        if(team.isEmpty()) {
+        if (team.isEmpty()) {
             throw new ResourceNotFoundException(ErrorConstants.MANAGER_WITH_NO_TEAM);
         }
 

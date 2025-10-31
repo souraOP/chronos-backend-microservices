@@ -1,7 +1,7 @@
 package com.chronos.shiftservice.entity;
 
-import com.chronos.shiftservice.constants.enums.ShiftStatus;
-import com.chronos.shiftservice.constants.enums.ShiftType;
+import com.chronos.common.constants.enums.ShiftStatus;
+import com.chronos.common.constants.enums.ShiftType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

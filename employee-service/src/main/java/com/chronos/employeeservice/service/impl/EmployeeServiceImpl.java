@@ -1,10 +1,10 @@
 package com.chronos.employeeservice.service.impl;
 
 
-import com.chronos.employeeservice.constants.ErrorConstants;
-import com.chronos.employeeservice.constants.UuidErrorConstants;
-import com.chronos.employeeservice.constants.enums.Gender;
-import com.chronos.employeeservice.constants.enums.Role;
+import com.chronos.common.constants.ErrorConstants;
+import com.chronos.common.constants.UuidErrorConstants;
+import com.chronos.common.constants.enums.Gender;
+import com.chronos.common.constants.enums.Role;
 import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeNameResponseDTO;
 import com.chronos.employeeservice.entity.Employee;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import static com.chronos.employeeservice.util.ParseUUID.parseUUID;
+import static com.chronos.common.util.ParseUUID.parseUUID;
 
 
 @Service

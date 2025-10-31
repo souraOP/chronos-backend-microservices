@@ -1,6 +1,6 @@
 package com.chronos.shiftservice.dto.shiftSwapRequest;
 
-import com.chronos.shiftservice.constants.enums.ShiftSwapRequestStatus;
+import com.chronos.common.constants.enums.ShiftSwapRequestStatus;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;

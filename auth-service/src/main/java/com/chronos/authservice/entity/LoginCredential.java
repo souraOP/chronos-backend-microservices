@@ -1,7 +1,7 @@
 package com.chronos.authservice.entity;
 
 
-import com.chronos.authservice.constants.enums.Role;
+import com.chronos.common.constants.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

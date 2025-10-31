@@ -1,8 +1,8 @@
 package com.chronos.shiftservice.repository.projections;
 
 
-import com.chronos.shiftservice.constants.enums.ShiftStatus;
-import com.chronos.shiftservice.constants.enums.ShiftType;
+import com.chronos.common.constants.enums.ShiftStatus;
+import com.chronos.common.constants.enums.ShiftType;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;

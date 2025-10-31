@@ -1,6 +1,6 @@
 package com.chronos.shiftservice.entity;
 
-import com.chronos.shiftservice.constants.enums.ShiftSwapRequestStatus;
+import com.chronos.common.constants.enums.ShiftSwapRequestStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -1,7 +1,7 @@
 package com.chronos.employeeservice.dto.employee;
 
-import com.chronos.employeeservice.constants.enums.Gender;
-import com.chronos.employeeservice.constants.enums.Role;
+import com.chronos.common.constants.enums.Gender;
+import com.chronos.common.constants.enums.Role;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.Email;
 

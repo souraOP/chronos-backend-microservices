@@ -1,6 +1,6 @@
 package com.chronos.authservice.repository.projections;
 
-import com.chronos.authservice.constants.enums.Role;
+import com.chronos.common.constants.enums.Role;
 
 public interface LoginByEmailView {
     String getLoginId();

@@ -1,24 +1,24 @@
 package com.chronos.shiftservice.service.impl;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
-import com.chronos.shiftservice.constants.ErrorConstants;
-import com.chronos.shiftservice.constants.UuidErrorConstants;
-import com.chronos.shiftservice.constants.enums.Role;
-import com.chronos.shiftservice.constants.enums.ShiftStatus;
-import com.chronos.shiftservice.constants.enums.ShiftSwapRequestStatus;
+import com.chronos.common.constants.ErrorConstants;
+import com.chronos.common.constants.UuidErrorConstants;
+import com.chronos.common.constants.enums.Role;
+import com.chronos.common.constants.enums.ShiftStatus;
+import com.chronos.common.constants.enums.ShiftSwapRequestStatus;
+import com.chronos.common.exception.custom.ResourceNotFoundException;
+import com.chronos.common.exception.custom.ShiftSwapRequestException;
+import com.chronos.common.util.NanoIdGenerator;
 import com.chronos.shiftservice.dto.EmployeeDTO;
 import com.chronos.shiftservice.dto.shiftSwapRequest.CreateShiftSwapRequestDTO;
 import com.chronos.shiftservice.dto.shiftSwapRequest.ShiftSwapQueryResponseDTO;
 import com.chronos.shiftservice.dto.shiftSwapRequest.ShiftSwapResponseDTO;
 import com.chronos.shiftservice.entity.Shift;
 import com.chronos.shiftservice.entity.ShiftSwapRequest;
-import com.chronos.shiftservice.exception.custom.ResourceNotFoundException;
-import com.chronos.shiftservice.exception.custom.ShiftSwapRequestException;
 import com.chronos.shiftservice.feign.EmployeeClient;
 import com.chronos.shiftservice.repository.ShiftRepository;
 import com.chronos.shiftservice.repository.ShiftSwapRepository;
 import com.chronos.shiftservice.service.ShiftSwapRequestService;
-import com.chronos.shiftservice.utils.NanoIdGenerator;
 import com.chronos.shiftservice.utils.mappers.ShiftSwapMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import java.time.OffsetDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.chronos.shiftservice.utils.ParseUUID.parseUUID;
+import static com.chronos.common.util.ParseUUID.parseUUID;
 
 
 @Service
@@ -41,7 +41,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     public ShiftSwapRequestServiceImpl(
             ShiftSwapRepository shiftSwapRepository,
             ShiftRepository shiftRepository,
-            EmployeeClient employeeClient){
+            EmployeeClient employeeClient) {
         this.shiftSwapRepository = shiftSwapRepository;
         this.shiftRepository = shiftRepository;
         this.employeeClient = employeeClient;
@@ -50,6 +50,14 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     @Override
     @Transactional
     public ShiftSwapResponseDTO createSwapRequest(CreateShiftSwapRequestDTO createSwapDto) {
+        if (createSwapDto.requesterEmployeeId() == null) {
+            throw new ShiftSwapRequestException(ErrorConstants.REQUESTER_NOT_FOUND);
+        }
+
+        if (createSwapDto.requestedEmployeeId() == null) {
+            throw new ShiftSwapRequestException(ErrorConstants.REQUESTED_NOT_FOUND);
+        }
+
         UUID requesterId = createSwapDto.requesterEmployeeId();
         UUID requestedId = createSwapDto.requestedEmployeeId();
 
@@ -58,7 +66,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
             throw new ResourceNotFoundException(ErrorConstants.DIFF_REQUESTER_REQUESTED_EMP);
         }
 
-        if (createSwapDto.requestedEmployeeId() == null || createSwapDto.offeringShiftId() == null || createSwapDto.requestingShiftId() == null) {
+        if (createSwapDto.offeringShiftId() == null || createSwapDto.requestingShiftId() == null) {
             throw new ShiftSwapRequestException(ErrorConstants.ALL_IDS_REQUIRED);
         }
 
@@ -70,8 +78,8 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
             throw new ShiftSwapRequestException(ErrorConstants.EMPLOYEE_NOT_IN_MANAGER_TEAM);
         }
 
-        if(requested.role() == Role.MANAGER) {
-            throw new ShiftSwapRequestException("Cannot swap with manager");
+        if (requested.role() == Role.MANAGER) {
+            throw new ShiftSwapRequestException(ErrorConstants.CANNOT_SWAP_WITH_MANAGER);
         }
 
         Shift offeringShift = shiftRepository.findById(createSwapDto.offeringShiftId())
@@ -91,8 +99,8 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
 
 
         var now = OffsetDateTime.now();
-        if(offeringShift.getShiftStartTime().isBefore(now) || requestingShift.getShiftStartTime().isBefore(now)) {
-            throw new IllegalArgumentException("Cannot swap shifts that have already started");
+        if (offeringShift.getShiftStartTime().isBefore(now) || requestingShift.getShiftStartTime().isBefore(now)) {
+            throw new ShiftSwapRequestException(ErrorConstants.STARTED_SHIFT_SWAP_ERROR);
         }
 
 
@@ -154,8 +162,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
         List<UUID> empIds = team.stream().map(EmployeeDTO::id).toList();
 
-        if(empIds.isEmpty())
-        {
+        if (empIds.isEmpty()) {
             return List.of();
         }
 
@@ -184,13 +191,13 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
         ShiftSwapRequest shiftSwapRequest = shiftSwapRepository.findById(swapReqID)
                 .orElseThrow(() -> new ShiftSwapRequestException(ErrorConstants.SWAP_REQUEST_NOT_FOUND));
 
-        if(shiftSwapRequest.getStatus() != ShiftSwapRequestStatus.PENDING) {
+        if (shiftSwapRequest.getStatus() != ShiftSwapRequestStatus.PENDING) {
             throw new ShiftSwapRequestException(ErrorConstants.PENDING_REQUEST_HANDLE_ONLY);
         }
 
         Set<UUID> teamIds = employeeClient.getTeamMembers(managerId).stream().map(EmployeeDTO::id)
                 .collect(Collectors.toSet());
-        if(!teamIds.contains(shiftSwapRequest.getRequesterEmployeeId()) || !teamIds.contains(shiftSwapRequest.getRequestedEmployeeId())) {
+        if (!teamIds.contains(shiftSwapRequest.getRequesterEmployeeId()) || !teamIds.contains(shiftSwapRequest.getRequestedEmployeeId())) {
             throw new IllegalStateException(ErrorConstants.MANAGER_WITH_NO_TEAM);
         }
 
@@ -236,14 +243,14 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
         ShiftSwapRequest shiftSwapRequest = shiftSwapRepository.findById(swapReqID)
                 .orElseThrow(() -> new ShiftSwapRequestException(ErrorConstants.SWAP_REQUEST_NOT_FOUND));
 
-        if(shiftSwapRequest.getStatus() != ShiftSwapRequestStatus.PENDING) {
+        if (shiftSwapRequest.getStatus() != ShiftSwapRequestStatus.PENDING) {
             throw new ShiftSwapRequestException(ErrorConstants.PENDING_REQUEST_HANDLE_ONLY);
         }
 
         Set<UUID> teamIds = employeeClient.getTeamMembers(managerId).stream().map(EmployeeDTO::id)
                 .collect(Collectors.toSet());
-        if(!teamIds.contains(shiftSwapRequest.getRequesterEmployeeId()) || !teamIds.contains(shiftSwapRequest.getRequestedEmployeeId())) {
-            throw new IllegalStateException(ErrorConstants.MANAGER_WITH_NO_TEAM);
+        if (!teamIds.contains(shiftSwapRequest.getRequesterEmployeeId()) || !teamIds.contains(shiftSwapRequest.getRequestedEmployeeId())) {
+            throw new ResourceNotFoundException(ErrorConstants.MANAGER_WITH_NO_TEAM);
         }
 
         // just only mark the swap request as rejected
@@ -276,7 +283,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
 
 
     private String buildName(EmployeeDTO e) {
-        if(e == null) return "";
+        if (e == null) return "";
         String lName = e.lastName();
         return (lName == null || lName.isBlank()) ? e.firstName() : e.firstName() + " " + lName;
     }

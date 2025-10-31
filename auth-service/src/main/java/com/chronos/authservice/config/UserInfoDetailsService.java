@@ -1,8 +1,8 @@
 package com.chronos.authservice.config;
 
-import com.chronos.authservice.constants.ErrorConstants;
 import com.chronos.authservice.entity.LoginCredential;
 import com.chronos.authservice.repository.LoginRepository;
+import com.chronos.common.constants.ErrorConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

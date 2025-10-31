@@ -1,8 +1,8 @@
 package com.chronos.shiftservice.dto.shift;
 
 
-import com.chronos.shiftservice.constants.enums.ShiftStatus;
-import com.chronos.shiftservice.constants.enums.ShiftType;
+import com.chronos.common.constants.enums.ShiftStatus;
+import com.chronos.common.constants.enums.ShiftType;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
