@@ -1,8 +1,8 @@
-package com.chronos.employeeservice.dto;
+package com.chronos.shiftservice.dto.shift;
 
 
-import com.chronos.employeeservice.constants.enums.ShiftStatus;
-import com.chronos.employeeservice.constants.enums.ShiftType;
+import com.chronos.shiftservice.constants.enums.ShiftStatus;
+import com.chronos.shiftservice.constants.enums.ShiftType;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;

@@ -14,24 +14,35 @@ spring:
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/api/login/**
+
             - id: AUTH-SERVICE-OPEN
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/api/login
               filters:
                 - RewritePath=/api/login, /api/login
+
             - id: EMPLOYEE-SERVICE-SECURED
               uri: lb://EMPLOYEE-SERVICE
               predicates:
                 - Path=/api/employees/**,/api/teams/**
               filters:
                 - JwtAuthenticationFilter
+
             - id: EMPLOYEE-SERVICE-OPEN
               uri: lb://EMPLOYEE-SERVICE
               predicates:
                 - Path=/api/employees
               filters:
                 - RewritePath=/api/employees, /api/employees
+
+            - id: SHIFT-SERVICE-SECURED
+              uri: lb://SHIFT-SERVICE
+              predicates:
+                - Path=/api/shifts/**,/api/shift-swap-requests/**
+              filters:
+                - JwtAuthenticationFilter
+
 
 server:
   port: 8080
@@ -55,5 +66,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
-
+        include: health,info,gateway

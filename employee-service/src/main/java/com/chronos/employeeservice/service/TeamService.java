@@ -2,6 +2,8 @@ package com.chronos.employeeservice.service;
 
 
 import com.chronos.employeeservice.dto.TeamDTO;
+import com.chronos.employeeservice.dto.TeamEmployeesShiftFormResponseDTO;
+import com.chronos.employeeservice.dto.TeamMembersShiftDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public interface TeamService {
 
     void deleteTeam(String teamId);
 
-//    List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId);
-//
-//    List<TeamEmployeesShiftFormResponseDTO> getTeamEmployeesByManagerInCreateShiftForm(String managerId);
+    List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId);
+
+    List<TeamEmployeesShiftFormResponseDTO> getTeamEmployeesByManagerInCreateShiftForm(String managerId);
 }

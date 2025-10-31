@@ -3,10 +3,11 @@ package com.chronos.employeeservice.service.impl;
 
 import com.chronos.employeeservice.constants.ErrorConstants;
 import com.chronos.employeeservice.constants.UuidErrorConstants;
-import com.chronos.employeeservice.dto.TeamDTO;
+import com.chronos.employeeservice.dto.*;
 import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 import com.chronos.employeeservice.entity.Employee;
 import com.chronos.employeeservice.entity.Team;
+import com.chronos.employeeservice.feign.ShiftClient;
 import com.chronos.employeeservice.repository.EmployeeRepository;
 import com.chronos.employeeservice.repository.TeamRepository;
 import com.chronos.employeeservice.service.TeamService;
@@ -15,9 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.chronos.employeeservice.util.ParseUUID.parseUUID;
 
@@ -26,11 +26,17 @@ import static com.chronos.employeeservice.util.ParseUUID.parseUUID;
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
     private final EmployeeRepository employeeRepository;
+    private final ShiftClient shiftClient;
 
     @Autowired
-    public TeamServiceImpl(TeamRepository teamRepository, EmployeeRepository employeeRepository) {
+    public TeamServiceImpl(
+            TeamRepository teamRepository,
+            EmployeeRepository employeeRepository,
+            ShiftClient shiftClient
+    ) {
         this.teamRepository = teamRepository;
         this.employeeRepository = employeeRepository;
+        this.shiftClient = shiftClient;
     }
 
     @Override
@@ -98,51 +104,39 @@ public class TeamServiceImpl implements TeamService {
         teamRepository.deleteById(teamID);
     }
 
-//    @Override
-//    public List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId){
-//        UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
-//
-//        var teamEmployees = employeeRepository.findTeamEmployeesExcludingSelfAndManager(empID);
-//        if(teamEmployees.isEmpty()) {
-//            return List.of();
-//        }
-//
-//        var teamEmpIds = teamEmployees.stream().map(p -> p.getId()).toList();
-//
-//        var now = OffsetDateTime.now();
-//
-//        List<EmployeeShiftView> shifts = shiftRepository.findUpcomingShiftViewByEmployeeIds(teamEmpIds, now);
-//
-//        Map<UUID, List<ShiftCardDTO>> shiftsByEmp = shifts.stream()
-//                .collect(Collectors.groupingBy(
-//                        EmployeeShiftView::getEmployeeId,
-//                        Collectors.mapping(sv -> new ShiftCardDTO(
-//                                sv.getId()  ,
-//                                sv.getShiftId(),
-//                                sv.getShiftDate(),
-//                                sv.getShiftStartTime(),
-//                                sv.getShiftEndTime(),
-//                                sv.getShiftLocation(),
-//                                sv.getShiftType(),
-//                                sv.getShiftStatus()
-//                        ), Collectors.toList())
-//                ));
-//
-//        return teamEmployees.stream()
-//                .map(p -> new TeamMembersShiftDTO(
-//                        p.getId(),
-//                        p.getFirstName(),
-//                        p.getLastName(),
-//                        shiftsByEmp.getOrDefault(p.getId(), List.of())
-//                ))
-//                .sorted(Comparator.comparing(TeamMembersShiftDTO::firstName).thenComparing(TeamMembersShiftDTO::lastName))
-//                .toList();
-//    }
+    @Override
+    public List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId){
+        UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
-//    @Override
-//    public List<TeamEmployeesShiftFormResponseDTO> getTeamEmployeesByManagerInCreateShiftForm(String managerId) {
-//        UUID managerID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
-//
-//        return teamRepository.findTeamEmployeesByManager(managerID);
-//    }
+        List<Employee> teamEmployees = employeeRepository.findTeamEmployeesExcludingSelfAndManager(empID);
+
+        if(teamEmployees.isEmpty()) {
+            return List.of();
+        }
+
+        List<UUID> teamEmpIds = teamEmployees.stream().map(p -> p.getId()).toList();
+
+        Map<String, List<ShiftCardDTO>> upcomingByEmp = shiftClient.getUpcomingByEmployeeIds(new UpcomingShiftsRequestDTO(teamEmpIds));
+
+        Map<UUID, List<ShiftCardDTO>> shiftByEmp = upcomingByEmp.entrySet().stream()
+                .collect(Collectors.toMap(
+                        e -> UUID.fromString(e.getKey()),
+                        Map.Entry::getValue
+                ));
+
+        return teamEmployees.stream().map(p -> new TeamMembersShiftDTO(
+                p.getId(),
+                p.getFirstName(),
+                p.getLastName(),
+                shiftByEmp.getOrDefault(p.getId(), List.of())
+        )).sorted(Comparator.comparing(TeamMembersShiftDTO::firstName)
+                .thenComparing(TeamMembersShiftDTO::lastName)).toList();
+    }
+
+    @Override
+    public List<TeamEmployeesShiftFormResponseDTO> getTeamEmployeesByManagerInCreateShiftForm(String managerId) {
+        UUID managerID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
+
+        return teamRepository.findTeamEmployeesByManager(managerID);
+    }
 }

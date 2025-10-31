@@ -2,6 +2,8 @@ package com.chronos.employeeservice.controller;
 
 
 import com.chronos.employeeservice.dto.TeamDTO;
+import com.chronos.employeeservice.dto.TeamEmployeesShiftFormResponseDTO;
+import com.chronos.employeeservice.dto.TeamMembersShiftDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 import com.chronos.employeeservice.service.impl.TeamServiceImpl;
 import jakarta.validation.Valid;
@@ -50,7 +52,7 @@ public class TeamController {
     }
 
 
-    @PreAuthorize("hasRole('MANAGER')")
+//    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-members")
     public ResponseEntity<List<EmployeeDTO>> getTeamMembers(@PathVariable String managerId) {
         List<EmployeeDTO> getTeam = teamService.getTeamMembers(managerId);
@@ -58,17 +60,17 @@ public class TeamController {
     }
 
 
+    // for usage
+    @GetMapping("/{employeeId}/members-with-upcoming-shifts")
+    public ResponseEntity<List<TeamMembersShiftDTO>> getTeamMembersWithUpcomingShifts(@PathVariable("employeeId") String employeeId) {
+        List<TeamMembersShiftDTO> result = teamService.getTeamMembersWithUpcomingShifts(employeeId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
 
-//    @GetMapping("/{employeeId}/members-with-upcoming-shifts")
-//    public ResponseEntity<List<TeamMembersShiftDTO>> getTeamMembersWithUpcomingShifts(@PathVariable("employeeId") String employeeId) {
-//        List<TeamMembersShiftDTO> result = teamService.getTeamMembersWithUpcomingShifts(employeeId);
-//        return new ResponseEntity<>(result, HttpStatus.OK);
-//    }
 
-
-//    @GetMapping("/manager/{managerId}/team-employees")
-//    public ResponseEntity<List<TeamEmployeesShiftFormResponseDTO>> getTeamEmployeesByManagerInCreateShiftForm(@PathVariable("managerId") String managerId){
-//        List<TeamEmployeesShiftFormResponseDTO> getEmployees = teamService.getTeamEmployeesByManagerInCreateShiftForm(managerId);
-//        return new ResponseEntity<>(getEmployees, HttpStatus.OK);
-//    }
+    @GetMapping("/manager/{managerId}/team-employees")
+    public ResponseEntity<List<TeamEmployeesShiftFormResponseDTO>> getTeamEmployeesByManagerInCreateShiftForm(@PathVariable("managerId") String managerId){
+        List<TeamEmployeesShiftFormResponseDTO> getEmployees = teamService.getTeamEmployeesByManagerInCreateShiftForm(managerId);
+        return new ResponseEntity<>(getEmployees, HttpStatus.OK);
+    }
 }
