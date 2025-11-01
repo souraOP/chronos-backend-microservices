@@ -1,6 +1,6 @@
 package com.chronos.authservice.dto;
 
-import com.chronos.authservice.constants.enums.Role;
+import com.chronos.common.constants.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

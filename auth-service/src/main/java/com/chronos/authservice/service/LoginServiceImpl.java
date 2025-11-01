@@ -1,16 +1,20 @@
 package com.chronos.authservice.service;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
-import com.chronos.authservice.constants.ErrorConstants;
-import com.chronos.authservice.constants.LoginConstants;
-import com.chronos.authservice.constants.enums.Role;
 import com.chronos.authservice.dto.*;
 import com.chronos.authservice.entity.LoginCredential;
 import com.chronos.authservice.feign.EmployeeClient;
 import com.chronos.authservice.repository.LoginRepository;
 import com.chronos.authservice.service.auth.JwtService;
 import com.chronos.authservice.service.interfaces.LoginService;
-import com.chronos.authservice.util.NanoIdGenerator;
+import com.chronos.authservice.util.LoginMapper;
+import com.chronos.common.constants.ErrorConstants;
+import com.chronos.common.constants.LoginConstants;
+import com.chronos.common.constants.enums.Role;
+import com.chronos.common.exception.custom.LoginFailedException;
+import com.chronos.common.exception.custom.PasswordDoNotMatchException;
+import com.chronos.common.exception.custom.ResourceNotFoundException;
+import com.chronos.common.util.NanoIdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -64,9 +68,9 @@ public class LoginServiceImpl implements LoginService {
 
 
         LoginCredential credential = loginRepository.findByEmailWithoutProjection(loginDTO.email())
-                .orElseThrow(() -> new RuntimeException(ErrorConstants.EMPLOYEE_LOGIN_FAILED));
+                .orElseThrow(() -> new LoginFailedException(ErrorConstants.EMPLOYEE_LOGIN_FAILED));
 
-        if(credential.getRole() != role) {
+        if (credential.getRole() != role) {
             throw new RuntimeException(errorMessage);
         }
 
@@ -120,23 +124,23 @@ public class LoginServiceImpl implements LoginService {
 
         return new CreateLoginCredentialResponseDTO(loginCredential.getLoginCredentialId(), LoginConstants.LOGIN_DETAILS_CREATED, loginCredential.getDisplayEmployeeId());
     }
-//
-//    @Override
-//    public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
-//        LoginByEmailView loginCredential = loginRepository.findByEmail(email)
-//                .orElseThrow(() -> new ResourceNotFoundException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
-//
-//        return LoginMapper.loginViewToDto(loginCredential);
-//    }
-//
+
+    @Override
+    public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
+        LoginCredential loginCredential = loginRepository.findByEmailView(email)
+                .orElseThrow(() -> new RuntimeException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
+
+        return LoginMapper.loginEntityToDto(loginCredential);
+    }
+
     @Override
     @Transactional
     public ChangePasswordResponseDTO changePassword(String email, ChangePasswordDTO changePasswordDTO) {
         if (!changePasswordDTO.newPassword().equals(changePasswordDTO.confirmPassword())) {
-            throw new RuntimeException(ErrorConstants.NEW_PASSWORD_CONFIRM_PASSWORD_NOT_MATCH);
+            throw new PasswordDoNotMatchException(ErrorConstants.NEW_PASSWORD_CONFIRM_PASSWORD_NOT_MATCH);
         }
         LoginCredential loginCredential = loginRepository.findByEmailWithoutProjection(email)
-                .orElseThrow(() -> new RuntimeException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
 
         loginCredential.setPasswordHash(passwordEncoder.encode(changePasswordDTO.confirmPassword()));
         loginRepository.save(loginCredential);

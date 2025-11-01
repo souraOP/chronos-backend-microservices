@@ -10,18 +10,53 @@ spring:
               enabled: true
               lower-case-service-id: true
           routes:
-            - id: AUTH-SERVICE
+            - id: AUTH-SERVICE-SECURED
               uri: lb://AUTH-SERVICE
               predicates:
                 - Path=/api/login/**
+
+            - id: AUTH-SERVICE-OPEN
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/login
               filters:
-                - RewritePath=/api/login/(?<segment>.*), /api/login/${segment}
-  #            - id: employee-service
-  #              uri: lb://employee-service
-  #              predicates:
-  #                - Path = /api/employees/**, /api/teams/**
-  #              filters:
-  #                - JwtAuthenticationFilter
+                - RewritePath=/api/login, /api/login
+
+            - id: EMPLOYEE-SERVICE-SECURED
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/api/employees/**,/api/teams/**
+              filters:
+                - JwtAuthenticationFilter
+
+            - id: EMPLOYEE-SERVICE-OPEN
+              uri: lb://EMPLOYEE-SERVICE
+              predicates:
+                - Path=/api/employees
+              filters:
+                - RewritePath=/api/employees, /api/employees
+
+            - id: SHIFT-SERVICE-SECURED
+              uri: lb://SHIFT-SERVICE
+              predicates:
+                - Path=/api/shifts/**,/api/shift-swap-requests/**
+              filters:
+                - JwtAuthenticationFilter
+
+            - id: LEAVE-SERVICE-SECURED
+              uri: lb://LEAVE-SERVICE
+              predicates:
+                - Path=/api/leave-balances/**,/api/leave-requests/employees/**,/api/leave-requests/manager/**
+              filters:
+                - JwtAuthenticationFilter
+
+            - id: ATTENDANCE-SERVICE-SECURED
+              uri: lb://ATTENDANCE-SERVICE
+              predicates:
+                - Path=/api/attendances/**
+              filters:
+                - JwtAuthenticationFilter
+
 
 server:
   port: 8080
@@ -33,7 +68,7 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: ${spring.cloud.client.ip-address}
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
     hostname: ${spring.cloud.client.hostname}
   client:
     service-url:
@@ -41,4 +76,8 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
