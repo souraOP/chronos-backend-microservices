@@ -43,6 +43,13 @@ spring:
               filters:
                 - JwtAuthenticationFilter
 
+            - id: LEAVE-SERVICE-SECURED
+              uri: lb://LEAVE-SERVICE
+              predicates:
+                - Path=/api/leave-balances/**,/api/leave-requests/employees/**,/api/leave-requests/manager/**
+              filters:
+                - JwtAuthenticationFilter
+
 
 server:
   port: 8080
