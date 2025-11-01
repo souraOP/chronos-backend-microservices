@@ -60,7 +60,8 @@ public class TeamController {
     }
 
 
-    // for usage
+    // for usage in the create shift swap form
+    // only for employee usage
     @GetMapping("/{employeeId}/members-with-upcoming-shifts")
     public ResponseEntity<List<TeamMembersShiftDTO>> getTeamMembersWithUpcomingShifts(@PathVariable("employeeId") String employeeId) {
         List<TeamMembersShiftDTO> result = teamService.getTeamMembersWithUpcomingShifts(employeeId);

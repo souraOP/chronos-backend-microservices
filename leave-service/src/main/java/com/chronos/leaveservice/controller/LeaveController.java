@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,13 +24,14 @@ public class LeaveController {
         this.leaveRequestService = leaveRequestService;
     }
 
-
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}")
     public ResponseEntity<LeaveRequestResponseDTO> createLeaveRequest(@PathVariable("employeeId") String employeeId, @Valid @RequestBody LeaveRequestCreateRequestDTO requestDTO) {
         LeaveRequestResponseDTO createdLR = leaveRequestService.createLeaveRequest(employeeId, requestDTO);
         return ResponseEntity.ok(createdLR);
     }
 
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<LeaveRequestResponseDTO>> getLeaveRequestByEmployee(@PathVariable("employeeId") String employeeId) {
         List<LeaveRequestResponseDTO> getLeaveRequests = leaveRequestService.getEmployeeLeaveRequests(employeeId);
@@ -37,6 +39,7 @@ public class LeaveController {
     }
 
 
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/dashboard")
     public ResponseEntity<List<EmployeeLeaveRequestDashboardResponseDTO>> getLeaveRequestEmployeeDashboard(@PathVariable String employeeId) {
         List<EmployeeLeaveRequestDashboardResponseDTO> getLeaveRequestDashboard = leaveRequestService.getLeaveRequestEmployeeDashboard(employeeId);

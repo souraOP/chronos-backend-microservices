@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class ManagerLeaveRequestController {
     }
 
 
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}")
     public ResponseEntity<List<ManagerLeaveRequestDTO>> getTeamLeaveRequests(@PathVariable String managerId) {
         List<ManagerLeaveRequestDTO> getManagerLeaveRequest = leaveRequestService.getTeamLeaveRequests(managerId);
@@ -34,6 +36,7 @@ public class ManagerLeaveRequestController {
     }
 
     // have to pass the action in the request body
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/{requestId}/action")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void actionOnLeaveRequest(
@@ -45,6 +48,7 @@ public class ManagerLeaveRequestController {
     }
 
 
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/stats")
     public ResponseEntity<ManagerLeaveRequestDataDTO> getTeamsLeaveRequestStats(@RequestParam String managerId) {
         ManagerLeaveRequestDataDTO stats = leaveRequestService.getLeaveRequestsStatsByManager(managerId);
@@ -52,6 +56,7 @@ public class ManagerLeaveRequestController {
     }
 
 
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}/dashboard")
     public ResponseEntity<List<ManagerLeaveRequestDashboardResponseDTO>> getLeaveRequestManagerDashboard(@PathVariable String managerId) {
         List<ManagerLeaveRequestDashboardResponseDTO> leaveRequestData = leaveRequestService.getLeaveRequestManagerDashboard(managerId);

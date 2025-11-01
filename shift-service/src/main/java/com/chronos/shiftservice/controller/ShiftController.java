@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -27,14 +28,14 @@ public class ShiftController {
         this.shiftService = shiftService;
     }
 
-
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/create")
     public ResponseEntity<ShiftResponseDTO> createShift(@PathVariable String managerId, @Valid @RequestBody CreateShiftDateRequestDTO request) {
         ShiftResponseDTO createdShift = shiftService.createShift(request, managerId);
         return new ResponseEntity<>(createdShift, HttpStatus.CREATED);
     }
 
-
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<ShiftResponseDTO>> getEmployeeShifts(@PathVariable String employeeId) {
         List<ShiftResponseDTO> shifts = shiftService.getEmployeeShifts(employeeId);
@@ -42,7 +43,7 @@ public class ShiftController {
     }
 
 
-
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts")
     public ResponseEntity<List<ShiftResponseDTO>> getTeamsShiftByManager(@PathVariable String managerId) {
         List<ShiftResponseDTO> shifts = shiftService.getTeamsShiftByManager(managerId);
@@ -50,7 +51,7 @@ public class ShiftController {
     }
 
 
-
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts-by-date")
     public ResponseEntity<List<TeamShiftTableRowDTO>> getTeamShiftsByManagerAndDatePicker(
             @PathVariable String managerId,

@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,13 +32,14 @@ public class ShiftSwapRequestController {
         return new ResponseEntity<>(createSwap, HttpStatus.CREATED);
     }
 
-
+    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<ShiftSwapQueryResponseDTO>> getSwapRequestsForEmployee(@PathVariable String employeeId) {
         List<ShiftSwapQueryResponseDTO> getSwapRequestsByEmployee = shiftSwapRequestService.getSwapRequestsForEmployee(employeeId);
         return new ResponseEntity<>(getSwapRequestsByEmployee, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/requests")
     public ResponseEntity<List<ShiftSwapQueryResponseDTO>> getTeamSwapRequests(@PathVariable String managerId) {
         List<ShiftSwapQueryResponseDTO> getTeamsShift = shiftSwapRequestService.getTeamSwapRequests(managerId);
@@ -45,6 +47,7 @@ public class ShiftSwapRequestController {
     }
 
 
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/requests/{swapRequestId}/approve")
     public ResponseEntity<ShiftSwapResponseDTO> approveSwapRequest(@PathVariable String managerId, @PathVariable String swapRequestId) {
         ShiftSwapResponseDTO approveSwapRequest = shiftSwapRequestService.approveSwapRequest(managerId, swapRequestId);
@@ -52,6 +55,7 @@ public class ShiftSwapRequestController {
     }
 
 
+    @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/requests/{swapRequestId}/reject")
     public ResponseEntity<ShiftSwapResponseDTO> rejectSwapRequest(@PathVariable String managerId, @PathVariable String swapRequestId) {
         ShiftSwapResponseDTO rejectSwapRequest = shiftSwapRequestService.rejectSwapRequest(managerId, swapRequestId);
