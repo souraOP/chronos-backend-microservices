@@ -50,6 +50,13 @@ spring:
               filters:
                 - JwtAuthenticationFilter
 
+            - id: ATTENDANCE-SERVICE-SECURED
+              uri: lb://ATTENDANCE-SERVICE
+              predicates:
+                - Path=/api/attendances/**
+              filters:
+                - JwtAuthenticationFilter
+
 
 server:
   port: 8080
