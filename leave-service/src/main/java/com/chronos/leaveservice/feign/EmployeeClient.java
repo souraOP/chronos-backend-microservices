@@ -1,6 +1,6 @@
 package com.chronos.leaveservice.feign;
 
-import com.chronos.leaveservice.dto.EmployeeDTO;
+import com.chronos.common.dto.EmployeeDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,6 +1,6 @@
 package com.chronos.employeeservice.service;
 
-import com.chronos.employeeservice.dto.employee.EmployeeDTO;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeNameResponseDTO;
 
 import java.util.List;

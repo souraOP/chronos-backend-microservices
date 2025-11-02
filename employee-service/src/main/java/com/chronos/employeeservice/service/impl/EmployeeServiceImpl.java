@@ -5,7 +5,7 @@ import com.chronos.common.constants.ErrorConstants;
 import com.chronos.common.constants.UuidErrorConstants;
 import com.chronos.common.constants.enums.Gender;
 import com.chronos.common.constants.enums.Role;
-import com.chronos.employeeservice.dto.employee.EmployeeDTO;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeNameResponseDTO;
 import com.chronos.employeeservice.entity.Employee;
 import com.chronos.employeeservice.repository.EmployeeRepository;

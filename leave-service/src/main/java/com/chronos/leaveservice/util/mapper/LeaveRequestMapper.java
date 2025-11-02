@@ -2,8 +2,8 @@ package com.chronos.leaveservice.util.mapper;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
 import com.chronos.common.constants.enums.LeaveStatus;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.common.util.NanoIdGenerator;
-import com.chronos.leaveservice.dto.EmployeeDTO;
 import com.chronos.leaveservice.dto.leaveRequests.LeaveRequestCreateDTO;
 import com.chronos.leaveservice.dto.leaveRequests.LeaveRequestResponseDTO;
 import com.chronos.leaveservice.dto.leaveRequests.ManagerLeaveRequestDTO;

@@ -16,7 +16,8 @@ public class GatewaySecurityConfig {
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)
                 .formLogin(ServerHttpSecurity.FormLoginSpec::disable)
-                .authorizeExchange(e -> e.anyExchange().permitAll())
+                .authorizeExchange(e -> e
+                        .anyExchange().permitAll())
                 .build();
     }
 }

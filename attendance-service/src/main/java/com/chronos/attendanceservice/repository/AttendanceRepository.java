@@ -1,6 +1,6 @@
 package com.chronos.attendanceservice.repository;
 
-import com.chronos.attendanceservice.dto.attendance.AttendanceResponseDTO;
+import com.chronos.attendanceservice.dto.AttendanceResponseDTO;
 import com.chronos.attendanceservice.entity.Attendance;
 import com.chronos.common.constants.enums.AttendanceStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public interface AttendanceRepository extends JpaRepository<Attendance, UUID> {
 
     @Query("""
-            select new com.chronos.attendanceservice.dto.attendance.AttendanceResponseDTO(
+            select new com.chronos.attendanceservice.dto.AttendanceResponseDTO(
                  a.attendanceId,
                  a.date,
                  a.checkIn,

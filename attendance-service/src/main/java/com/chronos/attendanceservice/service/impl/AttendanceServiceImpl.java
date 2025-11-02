@@ -1,11 +1,10 @@
 package com.chronos.attendanceservice.service.impl;
 
 import com.aventrix.jnanoid.jnanoid.NanoIdUtils;
-import com.chronos.attendanceservice.dto.EmployeeDTO;
-import com.chronos.attendanceservice.dto.attendance.AttendanceResponseDTO;
-import com.chronos.attendanceservice.dto.attendance.CheckInRequestDTO;
-import com.chronos.attendanceservice.dto.attendance.ManagerAttendanceDisplayByDateResponseDTO;
-import com.chronos.attendanceservice.dto.attendance.ManagerAttendanceRowDTO;
+import com.chronos.attendanceservice.dto.AttendanceResponseDTO;
+import com.chronos.attendanceservice.dto.CheckInRequestDTO;
+import com.chronos.attendanceservice.dto.ManagerAttendanceDisplayByDateResponseDTO;
+import com.chronos.attendanceservice.dto.ManagerAttendanceRowDTO;
 import com.chronos.attendanceservice.entity.Attendance;
 import com.chronos.attendanceservice.feign.EmployeeClient;
 import com.chronos.attendanceservice.repository.AttendanceRepository;
@@ -14,6 +13,7 @@ import com.chronos.attendanceservice.util.mapper.AttendanceMapper;
 import com.chronos.common.constants.ErrorConstants;
 import com.chronos.common.constants.UuidErrorConstants;
 import com.chronos.common.constants.enums.AttendanceStatus;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.common.exception.custom.ActiveAttendanceExistsException;
 import com.chronos.common.exception.custom.ActiveAttendanceNotFoundException;
 import com.chronos.common.exception.custom.EmployeeNotFoundException;

@@ -1,9 +1,9 @@
 package com.chronos.attendanceservice.service;
 
 
-import com.chronos.attendanceservice.dto.attendance.AttendanceResponseDTO;
-import com.chronos.attendanceservice.dto.attendance.CheckInRequestDTO;
-import com.chronos.attendanceservice.dto.attendance.ManagerAttendanceDisplayByDateResponseDTO;
+import com.chronos.attendanceservice.dto.AttendanceResponseDTO;
+import com.chronos.attendanceservice.dto.CheckInRequestDTO;
+import com.chronos.attendanceservice.dto.ManagerAttendanceDisplayByDateResponseDTO;
 
 import java.util.List;
 

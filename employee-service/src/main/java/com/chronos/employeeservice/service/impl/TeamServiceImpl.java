@@ -3,8 +3,8 @@ package com.chronos.employeeservice.service.impl;
 
 import com.chronos.common.constants.ErrorConstants;
 import com.chronos.common.constants.UuidErrorConstants;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.employeeservice.dto.*;
-import com.chronos.employeeservice.dto.employee.EmployeeDTO;
 import com.chronos.employeeservice.entity.Employee;
 import com.chronos.employeeservice.entity.Team;
 import com.chronos.employeeservice.feign.ShiftClient;

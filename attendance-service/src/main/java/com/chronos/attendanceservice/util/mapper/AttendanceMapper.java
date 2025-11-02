@@ -1,7 +1,7 @@
 package com.chronos.attendanceservice.util.mapper;
 
 
-import com.chronos.attendanceservice.dto.attendance.AttendanceResponseDTO;
+import com.chronos.attendanceservice.dto.AttendanceResponseDTO;
 import com.chronos.attendanceservice.entity.Attendance;
 
 public class AttendanceMapper {

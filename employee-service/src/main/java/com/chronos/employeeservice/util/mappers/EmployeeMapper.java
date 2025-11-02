@@ -1,6 +1,6 @@
 package com.chronos.employeeservice.util.mappers;
 
-import com.chronos.employeeservice.dto.employee.EmployeeDTO;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.employeeservice.entity.Employee;
 
 public class EmployeeMapper {
