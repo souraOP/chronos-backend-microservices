@@ -45,6 +45,13 @@ spring:
               filters:
                 - RewritePath=/v3/api-docs/leave-service,/v3/api-docs
 
+            - id: REPORT-SERVICE-OPENAPI
+              uri: lb://REPORT-SERVICE
+              predicates:
+                - Path=/v3/api-docs/report-service
+              filters:
+                - RewritePath=/v3/api-docs/report-service,/v3/api-docs
+
             - id: AUTH-SERVICE-SECURED
               uri: lb://AUTH-SERVICE
               predicates:
@@ -92,6 +99,13 @@ spring:
               filters:
                 - JwtAuthenticationFilter
 
+            - id: REPORT-SERVICE-SECURED
+              uri: lb://REPORT-SERVICE
+              predicates:
+                - Path=/api/reports/**
+              filters:
+                - JwtAuthenticationFilter
+
 
 server:
   port: 8080
@@ -136,4 +150,6 @@ springdoc:
         url: /v3/api-docs/attendance-service
       - name: leave-service
         url: /v3/api-docs/leave-service
+      - name: report-service
+        url: /v3/api-docs/report-service
     persist-authorization: true

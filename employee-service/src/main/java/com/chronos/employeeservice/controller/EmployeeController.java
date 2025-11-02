@@ -24,7 +24,6 @@ import java.util.Map;
 )
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin("*")
 public class EmployeeController {
     private final EmployeeServiceImpl employeeService;
 

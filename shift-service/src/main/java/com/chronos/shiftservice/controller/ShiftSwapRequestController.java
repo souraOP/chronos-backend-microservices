@@ -27,7 +27,6 @@ import java.util.List;
 )
 @RestController
 @RequestMapping("/api/shift-swap-requests")
-@CrossOrigin("*")
 public class ShiftSwapRequestController {
     private final ShiftSwapRequestServiceImpl shiftSwapRequestService;
 

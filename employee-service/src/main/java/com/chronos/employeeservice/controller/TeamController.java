@@ -28,7 +28,6 @@ import java.util.List;
 )
 @RestController
 @RequestMapping("/api/teams")
-@CrossOrigin("*")
 public class TeamController {
     private final TeamServiceImpl teamService;
 

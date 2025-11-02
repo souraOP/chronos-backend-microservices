@@ -26,7 +26,6 @@ import java.util.List;
 )
 @RestController
 @RequestMapping("/api/attendances")
-@CrossOrigin("*")
 public class AttendanceController {
     private final AttendanceServiceImpl attendanceService;
 
@@ -71,7 +70,7 @@ public class AttendanceController {
             @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = Void.class)))
     })
-    @PreAuthorize("hasRole('EMPLOYEE')")
+//    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/history")
     public ResponseEntity<List<AttendanceResponseDTO>> getAttendanceHistory(@PathVariable String employeeId) {
         List<AttendanceResponseDTO> history = attendanceService.getAttendanceHistory(employeeId);
