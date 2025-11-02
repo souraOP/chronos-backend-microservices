@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/shifts/internal")
 public class ShiftInternalController {
     private final ShiftServiceInternalImpl shiftServiceInternal;

@@ -24,7 +24,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/leave-balances")
-@CrossOrigin("*")
 public class LeaveBalanceController {
     private final LeaveBalanceServiceImpl leaveBalanceService;
 
