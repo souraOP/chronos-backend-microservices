@@ -1,6 +1,6 @@
 package com.chronos.employeeservice.repository;
 
-import com.chronos.employeeservice.dto.employee.EmployeeDTO;
+import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.employeeservice.dto.employee.EmployeeNameResponseDTO;
 import com.chronos.employeeservice.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,7 +17,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, UUID> {
     Optional<Employee> findByDisplayEmployeeId(String displayEmployeeId);
 
     @Query("""
-            select new com.chronos.employeeservice.dto.employee.EmployeeDTO(
+            select new com.chronos.common.dto.EmployeeDTO(
                  e.id,
                  e.displayEmployeeId,
                  e.firstName,

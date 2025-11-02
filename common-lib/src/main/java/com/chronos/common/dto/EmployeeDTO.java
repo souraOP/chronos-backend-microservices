@@ -1,4 +1,4 @@
-package com.chronos.attendanceservice.dto;
+package com.chronos.common.dto;
 
 import com.chronos.common.constants.enums.Gender;
 import com.chronos.common.constants.enums.Role;

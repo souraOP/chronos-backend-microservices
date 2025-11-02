@@ -1,4 +1,4 @@
-package com.chronos.attendanceservice.dto.attendance;
+package com.chronos.attendanceservice.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

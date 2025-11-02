@@ -1,4 +1,4 @@
-package com.chronos.attendanceservice.dto.attendance;
+package com.chronos.attendanceservice.dto;
 
 import java.time.LocalDate;
 import java.util.List;

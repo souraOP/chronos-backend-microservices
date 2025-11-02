@@ -1,4 +1,4 @@
-package com.chronos.attendanceservice.dto.attendance;
+package com.chronos.attendanceservice.dto;
 
 
 import com.chronos.common.constants.enums.AttendanceStatus;
