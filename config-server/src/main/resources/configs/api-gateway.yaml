@@ -5,10 +5,6 @@ spring:
     gateway:
       server:
         webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
           routes:
             - id: AUTH-SERVICE-OPENAPI
               uri: lb://AUTH-SERVICE
@@ -106,7 +102,6 @@ spring:
               filters:
                 - JwtAuthenticationFilter
 
-
 server:
   port: 8080
 
@@ -130,7 +125,13 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    shutdown:
+      access: unrestricted
 
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: debug
 
 springdoc:
   api-docs:
