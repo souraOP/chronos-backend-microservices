@@ -7,20 +7,25 @@ import com.chronos.shiftservice.dto.shiftSwapRequest.CreateShiftSwapRequestDTO;
 import com.chronos.shiftservice.dto.shiftSwapRequest.ShiftSwapQueryResponseDTO;
 import com.chronos.shiftservice.dto.shiftSwapRequest.ShiftSwapResponseDTO;
 import com.chronos.shiftservice.service.impl.ShiftSwapRequestServiceImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -33,16 +38,28 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = ShiftSwapRequestController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@TestPropertySource(properties = {
+        "spring.cloud.config.enabled=false",
+        "eureka.client.enabled=false"
+})
 public class ShiftSwapControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @MockitoBean
     private ShiftSwapRequestServiceImpl shiftSwapRequestService;
+
+    @MockitoBean(name = "jpaMappingContext")
+    private JpaMetamodelMappingContext jpaMappingContext;
+
+    @TestConfiguration
+    static class NoopAuditorConfig {
+        @Bean
+        AuditorAware<String> auditorAware() {
+            return () -> Optional.of("test-user");
+        }
+    }
 
     @Test
     @DisplayName("POST /api/shift-swap-requests/create -> returns 201 and response body")

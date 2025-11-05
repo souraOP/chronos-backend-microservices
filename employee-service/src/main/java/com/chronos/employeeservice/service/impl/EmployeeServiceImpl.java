@@ -29,7 +29,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(
+            EmployeeRepository employeeRepository
+    ) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -53,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO getEmployeeByDisplayId(String displayEmployeeId){
+    public EmployeeDTO getEmployeeByDisplayId(String displayEmployeeId) {
         Employee emp = employeeRepository.findByDisplayEmployeeId(displayEmployeeId)
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.EMP_FETCH_TERMINATED_NOT_FOUND));
 

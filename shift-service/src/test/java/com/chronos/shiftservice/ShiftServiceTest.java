@@ -61,8 +61,6 @@ class ShiftServiceTest {
         // mock employee client returns team containing the employee
         EmployeeDTO empDto = mock(EmployeeDTO.class);
         when(empDto.id()).thenReturn(empId);
-//        when(empDto.firstName()).thenReturn("John");
-//        when(empDto.lastName()).thenReturn("Doe");
         when(employeeClient.getTeamMembers(managerId)).thenReturn(List.of(empDto));
 
         // mock save result

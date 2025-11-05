@@ -14,7 +14,12 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -22,6 +27,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.times;
@@ -31,6 +37,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(controllers = AttendanceController.class)
 @AutoConfigureMockMvc(addFilters = false)
+@TestPropertySource(properties = {
+        "spring.cloud.config.enabled=false",
+        "eureka.client.enabled=false"
+})
 class AttendanceControllerTest {
 
     @Autowired
@@ -41,6 +51,18 @@ class AttendanceControllerTest {
 
     @MockitoBean
     private AttendanceServiceImpl attendanceService;
+
+    @MockitoBean(name = "jpaMappingContext")
+    private JpaMetamodelMappingContext jpaMappingContext;
+
+    @TestConfiguration
+    static class NoopAuditorConfig {
+        @Bean
+        AuditorAware<String> auditorAware() {
+            return () -> Optional.of("test-user");
+        }
+    }
+
 
     @Test
     @DisplayName("GET /api/attendances/{employeeId}/latest -> 200 and body")

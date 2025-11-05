@@ -39,7 +39,6 @@ public class TeamController {
     // this endpoint for development purpose only
     // here im creating the team -> taking input as teamDTO
 
-
     @Operation(
             summary = "Create Team REST API",
             description = "Create a new team (development purpose only)"
