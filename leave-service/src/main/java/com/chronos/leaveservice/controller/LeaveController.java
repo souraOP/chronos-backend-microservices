@@ -53,7 +53,7 @@ public class LeaveController {
     @PostMapping("/{employeeId}")
     public ResponseEntity<LeaveRequestResponseDTO> createLeaveRequest(@PathVariable("employeeId") String employeeId, @Valid @RequestBody LeaveRequestCreateRequestDTO requestDTO) {
         LeaveRequestResponseDTO createdLR = leaveRequestService.createLeaveRequest(employeeId, requestDTO);
-        return ResponseEntity.ok(createdLR);
+        return new ResponseEntity<>(createdLR, HttpStatus.CREATED);
     }
 
 
@@ -75,7 +75,7 @@ public class LeaveController {
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<LeaveRequestResponseDTO>> getLeaveRequestByEmployee(@PathVariable("employeeId") String employeeId) {
         List<LeaveRequestResponseDTO> getLeaveRequests = leaveRequestService.getEmployeeLeaveRequests(employeeId);
-        return ResponseEntity.ok(getLeaveRequests);
+        return new ResponseEntity<>(getLeaveRequests, HttpStatus.OK);
     }
 
 

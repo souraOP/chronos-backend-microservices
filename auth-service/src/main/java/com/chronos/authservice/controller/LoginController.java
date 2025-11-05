@@ -124,7 +124,6 @@ public class LoginController {
 
 
 
-
  // changing the passwordHash
   // patch request for changing the passwordHash
      @Operation(

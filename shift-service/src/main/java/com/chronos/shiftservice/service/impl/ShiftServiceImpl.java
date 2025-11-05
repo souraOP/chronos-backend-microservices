@@ -17,6 +17,7 @@ import com.chronos.shiftservice.feign.EmployeeClient;
 import com.chronos.shiftservice.repository.ShiftRepository;
 import com.chronos.shiftservice.service.ShiftService;
 import com.chronos.shiftservice.utils.mappers.ShiftMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
@@ -124,6 +122,7 @@ public class ShiftServiceImpl implements ShiftService {
     }
 
     @Override
+    @CircuitBreaker(name="employee-service", fallbackMethod="getDefaultTeamShiftByManager")
     public List<ShiftResponseDTO> getTeamsShiftByManager(String managerId) {
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
 
@@ -156,11 +155,6 @@ public class ShiftServiceImpl implements ShiftService {
                 }
         ));
 
-//        ZoneId zone = ZoneId.systemDefault();
-//        OffsetDateTime start = date.atStartOfDay(zone).toOffsetDateTime();
-//        OffsetDateTime end = date.plusDays(1).atStartOfDay(zone).toOffsetDateTime().minusNanos(1);
-
-
         List<UUID> empIds = new ArrayList<>(idToName.keySet());
         List<Shift> shifts = shiftRepository.findTeamShiftRowByEmployeeIdsAndDateBetween(empIds, date);
 
@@ -176,5 +170,11 @@ public class ShiftServiceImpl implements ShiftService {
                 s.getShiftLocation(),
                 s.getShiftStatus()
         )).toList();
+    }
+
+
+    public List<ShiftResponseDTO> getDefaultTeamShiftByManager(String managerId, Throwable t){
+        System.err.println("Circuit Breaker triggered for Employee Client call. Reason: " + t.getMessage());
+        return Collections.emptyList();
     }
 }

@@ -91,14 +91,6 @@ public class LoginServiceImpl implements LoginService {
         return new LoginResponseDTO(employeeUUID, credential.getEmail(), credential.getRole(), successMessage, employeeID, token);
     }
 
-//    @Override
-//    public List<GetAllLoginCredentialsDTO> getAllLoginCredentials() {
-//        List<GetAllLoginCredentialsDTO> listOfLoginDetails = new ArrayList<>();
-//        for (LoginCredential loginCredential : loginRepository.findAll()) {
-//            listOfLoginDetails.add(LoginMapper.loginEntityToDto(loginCredential));
-//        }
-//        return listOfLoginDetails;
-//    }
 
     @Override
     @Transactional

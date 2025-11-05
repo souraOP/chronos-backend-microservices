@@ -60,7 +60,7 @@ public class ManagerLeaveRequestController {
     @GetMapping("/{managerId}")
     public ResponseEntity<List<ManagerLeaveRequestDTO>> getTeamLeaveRequests(@PathVariable String managerId) {
         List<ManagerLeaveRequestDTO> getManagerLeaveRequest = leaveRequestService.getTeamLeaveRequests(managerId);
-        return ResponseEntity.ok(getManagerLeaveRequest);
+        return new ResponseEntity<>(getManagerLeaveRequest, HttpStatus.OK);
     }
 
 
@@ -114,8 +114,8 @@ public class ManagerLeaveRequestController {
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
-    @GetMapping("/stats")
-    public ResponseEntity<ManagerLeaveRequestDataDTO> getTeamsLeaveRequestStats(@RequestParam String managerId) {
+    @GetMapping("{managerId}/stats")
+    public ResponseEntity<ManagerLeaveRequestDataDTO> getTeamsLeaveRequestStats(@PathVariable String managerId) {
         ManagerLeaveRequestDataDTO stats = leaveRequestService.getLeaveRequestsStatsByManager(managerId);
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
