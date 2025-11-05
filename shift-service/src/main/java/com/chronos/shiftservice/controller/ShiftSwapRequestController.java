@@ -48,8 +48,6 @@ public class ShiftSwapRequestController {
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid input data",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PostMapping("/create")
@@ -71,10 +69,6 @@ public class ShiftSwapRequestController {
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
@@ -97,10 +91,6 @@ public class ShiftSwapRequestController {
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID format",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
@@ -124,10 +114,6 @@ public class ShiftSwapRequestController {
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID or swap request ID",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager or shift swap request not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
@@ -151,16 +137,12 @@ public class ShiftSwapRequestController {
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID or swap request ID",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager or shift swap request not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/requests/{swapRequestId}/reject")
     public ResponseEntity<ShiftSwapResponseDTO> rejectSwapRequest(@PathVariable String managerId, @PathVariable String swapRequestId) {
         ShiftSwapResponseDTO rejectSwapRequest = shiftSwapRequestService.rejectSwapRequest(managerId, swapRequestId);
-        return ResponseEntity.ok(rejectSwapRequest);
+        return new ResponseEntity<>(rejectSwapRequest, HttpStatus.OK);
     }
 }

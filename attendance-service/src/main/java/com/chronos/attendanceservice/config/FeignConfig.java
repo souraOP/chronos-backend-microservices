@@ -23,7 +23,6 @@ public class FeignConfig {
     public RequestInterceptor requestInterceptor(){
         return template -> {
             RequestAttributes attrs = RequestContextHolder.getRequestAttributes();
-            System.out.println("ATTRS: " + attrs);
             if (attrs == null) {
                 return;
             }

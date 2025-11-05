@@ -10,7 +10,6 @@ import com.chronos.reportservice.feign.AttendanceServiceClient;
 import com.chronos.reportservice.feign.EmployeeServiceClient;
 import com.chronos.reportservice.repository.ReportRepository;
 import com.chronos.reportservice.service.ReportService;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -109,7 +108,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ReportResponseDTO> getRecentReportsForManager(String managerId, int size) {
+    public List<ReportResponseDTO> getRecentReportsForManager(String managerId) {
 
         List<EmployeeDTO> members = employeeServiceClient.getTeamMembers(managerId);
         if(members == null || members.isEmpty()) {
@@ -122,12 +121,12 @@ public class ReportServiceImpl implements ReportService {
         }
 
 
-        return getRecentReportsForTeam(teamId, size);
+        return getRecentReportsForTeam(teamId);
     }
 
     @Override
-    public List<ReportResponseDTO> getRecentReportsForTeam(String teamId, int size) {
-        return reportRepository.findByTeamIdOrderByGeneratedAtDesc(teamId, PageRequest.of(0, Math.max(1, size)))
+    public List<ReportResponseDTO> getRecentReportsForTeam(String teamId) {
+        return reportRepository.findByTeamIdOrderByGeneratedAtDesc(teamId)
                 .stream().map(s -> toDto(s)).toList();
     }
 }

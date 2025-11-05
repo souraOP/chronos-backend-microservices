@@ -27,15 +27,14 @@ public class ReportController {
     }
 
     @GetMapping("/manager/{managerId}/recent")
-    public ResponseEntity<List<ReportResponseDTO>> recentByManager(@PathVariable("managerId") String managerId, @RequestParam(defaultValue = "10") int size){
-        List<ReportResponseDTO> results = reportService.getRecentReportsForManager(managerId, size);
+    public ResponseEntity<List<ReportResponseDTO>> recentByManager(@PathVariable("managerId") String managerId){
+        List<ReportResponseDTO> results = reportService.getRecentReportsForManager(managerId);
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
     @GetMapping("/team/{teamId}/recent")
-    public ResponseEntity<List<ReportResponseDTO>> recentByTeam(@PathVariable("teamId") String teamId, @RequestParam(defaultValue = "10") int size) {
-        List<ReportResponseDTO> result = reportService.getRecentReportsForTeam(teamId, size);
+    public ResponseEntity<List<ReportResponseDTO>> recentByTeam(@PathVariable("teamId") String teamId) {
+        List<ReportResponseDTO> result = reportService.getRecentReportsForTeam(teamId);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
 }

@@ -44,9 +44,7 @@ public class AttendanceController {
                     content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee or attendance record not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee or attendance record not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/latest")
@@ -66,9 +64,7 @@ public class AttendanceController {
                     content = @Content(schema = @Schema(implementation = AttendanceResponseDTO[].class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
 //    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/history")
@@ -88,9 +84,7 @@ public class AttendanceController {
                     content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid input data"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}/check-in")
@@ -113,9 +107,7 @@ public class AttendanceController {
                     content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}/check-out")
@@ -135,9 +127,7 @@ public class AttendanceController {
                     content = @Content(schema = @Schema(implementation = ManagerAttendanceDisplayByDateResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID or date format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found")
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}/attendance")

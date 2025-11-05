@@ -8,11 +8,9 @@ import com.chronos.reportservice.repository.ReportRepository;
 import com.chronos.reportservice.service.impl.ReportServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -20,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -58,7 +56,7 @@ class ReportServiceTest {
         String managerId = "m-2";
         when(employeeServiceClient.getTeamMembers(managerId)).thenReturn(List.of());
 
-        List<ReportResponseDTO> results = service.getRecentReportsForManager(managerId, 10);
+        List<ReportResponseDTO> results = service.getRecentReportsForManager(managerId);
 
         assertNotNull(results);
         assertTrue(results.isEmpty());
@@ -84,10 +82,10 @@ class ReportServiceTest {
         r.setTotalHoursWorked(40.5);
         r.setGeneratedAt(genAt);
 
-        when(reportRepository.findByTeamIdOrderByGeneratedAtDesc(eq(teamId), any(Pageable.class)))
+        when(reportRepository.findByTeamIdOrderByGeneratedAtDesc(eq(teamId)))
                 .thenReturn(List.of(r));
 
-        List<ReportResponseDTO> dtos = service.getRecentReportsForTeam(teamId, 5);
+        List<ReportResponseDTO> dtos = service.getRecentReportsForTeam(teamId);
 
         assertNotNull(dtos);
         assertEquals(1, dtos.size());
@@ -103,18 +101,6 @@ class ReportServiceTest {
         assertEquals(40.5, dto.totalHoursWorked());
         assertEquals(genAt, dto.generatedAt());
 
-        verify(reportRepository).findByTeamIdOrderByGeneratedAtDesc(eq(teamId), any(Pageable.class));
-    }
-
-    @Test
-    void getRecentReportsForTeam_SizeZero_UsesAtLeastOne() {
-        when(reportRepository.findByTeamIdOrderByGeneratedAtDesc(anyString(), any(Pageable.class)))
-                .thenReturn(List.of());
-
-        service.getRecentReportsForTeam("T1", 0);
-
-        ArgumentCaptor<Pageable> captor = ArgumentCaptor.forClass(Pageable.class);
-        verify(reportRepository).findByTeamIdOrderByGeneratedAtDesc(eq("T1"), captor.capture());
-        assertEquals(1, captor.getValue().getPageSize());
+        verify(reportRepository).findByTeamIdOrderByGeneratedAtDesc(eq(teamId));
     }
 }

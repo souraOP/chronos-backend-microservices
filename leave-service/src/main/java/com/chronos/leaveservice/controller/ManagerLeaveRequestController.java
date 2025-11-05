@@ -52,8 +52,6 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
@@ -109,8 +107,6 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
@@ -135,8 +131,6 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")

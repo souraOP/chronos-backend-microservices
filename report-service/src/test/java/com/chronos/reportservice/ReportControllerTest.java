@@ -81,7 +81,7 @@ class ReportControllerTest {
 
     @Test
     void recentByManager_returnsOk() throws Exception {
-        when(reportService.getRecentReportsForManager(eq("m1"), eq(2)))
+        when(reportService.getRecentReportsForManager(eq("m1")))
                 .thenReturn(List.of(sampleDto("RPT-1", "T1")));
 
         mockMvc.perform(get("/api/reports/manager/{managerId}/recent", "m1")
@@ -94,11 +94,10 @@ class ReportControllerTest {
 
     @Test
     void recentByTeam_returnsOk() throws Exception {
-        when(reportService.getRecentReportsForTeam(eq("T9"), eq(3)))
+        when(reportService.getRecentReportsForTeam(eq("T9")))
                 .thenReturn(List.of(sampleDto("RPT-A", "T9"), sampleDto("RPT-B", "T9")));
 
-        mockMvc.perform(get("/api/reports/team/{teamId}/recent", "T9")
-                        .param("size", "3"))
+        mockMvc.perform(get("/api/reports/team/{teamId}/recent", "T9"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$", hasSize(2)))

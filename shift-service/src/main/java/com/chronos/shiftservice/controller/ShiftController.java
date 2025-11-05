@@ -52,8 +52,6 @@ public class ShiftController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
@@ -78,15 +76,13 @@ public class ShiftController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Employee not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<ShiftResponseDTO>> getEmployeeShifts(@PathVariable String employeeId) {
         List<ShiftResponseDTO> shifts = shiftService.getEmployeeShifts(employeeId);
-        return ResponseEntity.ok(shifts);
+        return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
 
 
@@ -104,15 +100,13 @@ public class ShiftController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts")
     public ResponseEntity<List<ShiftResponseDTO>> getTeamsShiftByManager(@PathVariable String managerId) {
         List<ShiftResponseDTO> shifts = shiftService.getTeamsShiftByManager(managerId);
-        return ResponseEntity.ok(shifts);
+        return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
 
 
@@ -130,8 +124,6 @@ public class ShiftController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")

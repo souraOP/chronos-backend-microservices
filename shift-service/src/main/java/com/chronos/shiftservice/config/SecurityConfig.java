@@ -30,4 +30,5 @@ public class SecurityConfig {
     public HeaderAuthenticationFilter headerAuthenticationFilter() {
         return new HeaderAuthenticationFilter();
     }
+
 }

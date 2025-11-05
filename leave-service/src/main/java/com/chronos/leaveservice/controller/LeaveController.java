@@ -100,5 +100,4 @@ public class LeaveController {
         List<EmployeeLeaveRequestDashboardResponseDTO> getLeaveRequestDashboard = leaveRequestService.getLeaveRequestEmployeeDashboard(employeeId);
         return new ResponseEntity<>(getLeaveRequestDashboard, HttpStatus.OK);
     }
-
 }

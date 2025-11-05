@@ -64,15 +64,15 @@ public class LoginServiceImpl implements LoginService {
                     new UsernamePasswordAuthenticationToken(loginDTO.email(), loginDTO.password()
                     ));
         } catch (BadCredentialsException e) {
-            throw new RuntimeException(errorMessage + e);
+            throw new LoginFailedException(errorMessage + e);
         }
 
 
         LoginCredential credential = loginRepository.findByEmailWithoutProjection(loginDTO.email())
                 .orElseThrow(() -> new LoginFailedException(ErrorConstants.EMPLOYEE_LOGIN_FAILED));
 
-        if (credential.getRole() != role) {
-            throw new RuntimeException(errorMessage);
+        if (role != credential.getRole()) {
+            throw new LoginFailedException(errorMessage);
         }
 
         String employeeID = credential.getDisplayEmployeeId();
