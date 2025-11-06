@@ -22,6 +22,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller that manages shift swap requests between employees.
+ * <p>
+ * Responsibilities:
+ * - Create new shift swap requests between employees.
+ * - Retrieve swap requests for a specific employee.
+ * - Retrieve swap requests for a manager's entire team.
+ * - Approve pending shift swap requests.
+ * - Reject pending shift swap requests.
+ * <p>
+ * Base path: /api/shift-swap-requests
+ * Security: Endpoints are protected and require appropriate roles as noted per method.
+ * <p>
+ * Created by: Sourasish Mondal
+ * Since: 2025-11-06
+ */
+
 @Tag(
         name = "Shift Swap Request CRUD Rest API",
         description = "REST APIs - Create Shift Swap Request, Get Employee Swap Requests, Get Team Swap Requests, Approve/Reject Swap Requests"
@@ -37,7 +54,15 @@ public class ShiftSwapRequestController {
         this.shiftSwapRequestService = shiftSwapRequestService;
     }
 
-
+    /**
+     * Create a new shift swap request between two employees.
+     * <p>
+     * HTTP: POST /api/shift-swap-requests/create
+     * Security: Open endpoint (authenticated users can create swap requests).
+     *
+     * @param createShiftSwapRequestDTO the swap request creation payload
+     * @return the created swap request details
+     */
     @Operation(
             summary = "Create Shift Swap Request REST API",
             description = "Create a new shift swap request between employees"
@@ -61,12 +86,20 @@ public class ShiftSwapRequestController {
     })
     @PostMapping("/create")
     public ResponseEntity<ShiftSwapResponseDTO> createSwapRequest(@Valid @RequestBody CreateShiftSwapRequestDTO createShiftSwapRequestDTO) {
-        log.info("Invoked the createSwapRequest controller method");
+        log.info("Invoked the POST: createSwapRequest controller method, createShiftSwapRequestDTO:{}", createShiftSwapRequestDTO);
         ShiftSwapResponseDTO createSwap = shiftSwapRequestService.createSwapRequest(createShiftSwapRequestDTO);
         return new ResponseEntity<>(createSwap, HttpStatus.CREATED);
     }
 
-
+    /**
+     * Retrieve all shift swap requests for a specific employee.
+     * <p>
+     * HTTP: GET /api/shift-swap-requests/employee/{employeeId}
+     * Security: Requires EMPLOYEE role.
+     *
+     * @param employeeId the unique identifier of the employee
+     * @return list of shift swap requests involving the employee
+     */
     @Operation(
             summary = "Get Shift Swap Requests For Employee REST API",
             description = "Retrieve all shift swap requests related to a specific employee"
@@ -91,11 +124,20 @@ public class ShiftSwapRequestController {
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<ShiftSwapQueryResponseDTO>> getSwapRequestsForEmployee(@PathVariable String employeeId) {
-        log.info("Invoked the getSwapRequestsForEmployee controller method: employeeId:{}", employeeId);
+        log.info("Invoked the GET: getSwapRequestsForEmployee controller method: employeeId:{}", employeeId);
         List<ShiftSwapQueryResponseDTO> getSwapRequestsByEmployee = shiftSwapRequestService.getSwapRequestsForEmployee(employeeId);
         return new ResponseEntity<>(getSwapRequestsByEmployee, HttpStatus.OK);
     }
 
+    /**
+     * Retrieve all shift swap requests for a manager's entire team.
+     * <p>
+     * HTTP: GET /api/shift-swap-requests/manager/{managerId}/requests
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @return list of shift swap requests for all team members
+     */
 
     @Operation(
             summary = "Get Team Shift Swap Requests REST API",
@@ -121,11 +163,21 @@ public class ShiftSwapRequestController {
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/requests")
     public ResponseEntity<List<ShiftSwapQueryResponseDTO>> getTeamSwapRequests(@PathVariable String managerId) {
-        log.info("Invoked the getTeamSwapRequests controller method: managerId:{}", managerId);
+        log.info("Invoked the GET: getTeamSwapRequests controller method, managerId:{}", managerId);
         List<ShiftSwapQueryResponseDTO> getTeamsShift = shiftSwapRequestService.getTeamSwapRequests(managerId);
         return new ResponseEntity<>(getTeamsShift, HttpStatus.OK);
     }
 
+    /**
+     * Approve a pending shift swap request.
+     * <p>
+     * HTTP: POST /api/shift-swap-requests/manager/{managerId}/requests/{swapRequestId}/approve
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId    the unique identifier of the manager approving the request
+     * @param swapRequestId the unique identifier of the swap request to approve
+     * @return the updated swap request with APPROVED status
+     */
 
     @Operation(
             summary = "Approve Shift Swap Request REST API",
@@ -151,11 +203,21 @@ public class ShiftSwapRequestController {
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/requests/{swapRequestId}/approve")
     public ResponseEntity<ShiftSwapResponseDTO> approveSwapRequest(@PathVariable String managerId, @PathVariable String swapRequestId) {
-        log.info("Invoked the approveSwapRequest controller method: managerId:{}", managerId);
+        log.info("Invoked the POST: approveSwapRequest controller method: managerId:{}, swapRequestId:{}", managerId, swapRequestId);
         ShiftSwapResponseDTO approveSwapRequest = shiftSwapRequestService.approveSwapRequest(managerId, swapRequestId);
         return new ResponseEntity<>(approveSwapRequest, HttpStatus.OK);
     }
 
+    /**
+     * Reject a pending shift swap request.
+     * <p>
+     * HTTP: POST /api/shift-swap-requests/manager/{managerId}/requests/{swapRequestId}/reject
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId    the unique identifier of the manager rejecting the request
+     * @param swapRequestId the unique identifier of the swap request to reject
+     * @return the updated swap request with REJECTED status
+     */
 
     @Operation(
             summary = "Reject Shift Swap Request REST API",
@@ -181,7 +243,7 @@ public class ShiftSwapRequestController {
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/requests/{swapRequestId}/reject")
     public ResponseEntity<ShiftSwapResponseDTO> rejectSwapRequest(@PathVariable String managerId, @PathVariable String swapRequestId) {
-        log.info("Invoked the rejectSwapRequest controller method: managerId:{}", managerId);
+        log.info("Invoked the POST: rejectSwapRequest controller method, managerId:{}, swapRequestId:{}", managerId, swapRequestId);
         ShiftSwapResponseDTO rejectSwapRequest = shiftSwapRequestService.rejectSwapRequest(managerId, swapRequestId);
         return new ResponseEntity<>(rejectSwapRequest, HttpStatus.OK);
     }
