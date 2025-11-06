@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⏰ Chronos Microservices
+# Chronos Microservices
 
 ### Enterprise-Grade Employee Leave & Attendance Management System
 
@@ -32,7 +32,7 @@
 
 ## 🎯 Overview
 
-**Chronos** is a comprehensive, cloud-native Employee Leave and Attendance Management System (ELAMS) built using modern microservices architecture. The system provides robust solutions for managing employee attendance, leave requests, shift scheduling, employee data, and comprehensive reporting capabilities.
+**Chronos** is a comprehensive, cloud-native Employee Leave and Attendance Management System (ELAMS) built using modern microservice's architecture. The system provides robust solutions for managing employee attendance, leave requests, shift scheduling, employee data, and comprehensive reporting capabilities.
 
 ### ✨ Key Features
 
@@ -160,7 +160,7 @@ Handles user authentication, authorization, and JWT token management.
 
 **Tech Stack:**
 - Authentication: JWT (JSON Web Tokens)
-- Database: MySQL/PostgreSQL
+- Database: MySQL/PostgresSQL
 - ORM: Spring Data JPA with Hibernate
 
 ---
@@ -713,22 +713,19 @@ Contributions are welcome! Please follow these steps:
 
 ## 📄 License
 
-This project is licensed under the **Apache License 2.0** - see the [LICENSE](https://www.apache.org/licenses/LICENSE-2.0.txt) file for details.
+This project is licensed under the **CCO 1.0 Universal** - see the [LICENSE](https://www.apache.org/licenses/LICENSE-2.0.txt) file for details.
 
 ```
 Copyright 2025 Sourasish Mondal
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+    HEREUNDER.
 ```
 
 ---
