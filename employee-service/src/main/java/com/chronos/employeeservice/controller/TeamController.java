@@ -23,6 +23,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller that manages team operations and team member information.
+ * <p>
+ * Responsibilities:
+ * - Create new teams (development purpose).
+ * - Retrieve team size for a specific manager.
+ * - Delete teams from the system.
+ * - Retrieve all team members for a manager.
+ * - Retrieve team members with upcoming shift information.
+ * - Retrieve team employees formatted for shift creation forms.
+ * <p>
+ * Base path: /api/teams
+ * Security: Endpoints are protected and require appropriate roles as noted per method.
+ * <p>
+ * Created by: Sourasish Mondal
+ * Since: 2025-11-06
+ */
+
 @Tag(
         name = "Team CRUD Rest API",
         description = "REST APIs - Create Team, Get Team Size, Delete Team, Get Team Members, Get Team Members With Shifts"
@@ -38,8 +56,17 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    // this endpoint for development purpose only
-    // here im creating the team -> taking input as teamDTO
+    /**
+     * Create a new team in the system.
+     * <p>
+     * HTTP: POST /api/teams
+     * Security: Open endpoint.
+     * <p>
+     * Note: This endpoint is for development purposes only.
+     *
+     * @param teamDTO the team data to create
+     * @return the created team details
+     */
 
     @Operation(
             summary = "Create Team REST API",
@@ -57,6 +84,15 @@ public class TeamController {
         return new ResponseEntity<>(createTeam, HttpStatus.CREATED);
     }
 
+    /**
+     * Retrieve the number of team members for a specific manager.
+     * <p>
+     * HTTP: GET /api/teams/manager/{managerId}/teamSize
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @return the count of team members
+     */
 
     @Operation(
             summary = "Get Team Size REST API",
@@ -92,6 +128,15 @@ public class TeamController {
         return new ResponseEntity<>(teamSize, HttpStatus.OK);
     }
 
+    /**
+     * Permanently remove a team from the system.
+     * <p>
+     * HTTP: DELETE /api/teams/{teamId}
+     * Security: Open endpoint.
+     *
+     * @param teamId the unique identifier of the team to delete
+     * @return empty response
+     */
 
     @Operation(
             summary = "Delete Team REST API",
@@ -115,8 +160,16 @@ public class TeamController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Retrieve all team members for a specific manager.
+     * <p>
+     * HTTP: GET /api/teams/manager/{managerId}/team-members
+     * Security: Open endpoint (MANAGER role commented out).
+     *
+     * @param managerId the unique identifier of the manager
+     * @return list of team member employee details
+     */
 
-    // for getting the team members of that particular manager
     @Operation(
             summary = "Get Team Members REST API",
             description = "Retrieve all team members for a specific manager"
@@ -143,7 +196,6 @@ public class TeamController {
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))
             )
     })
-//    @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-members")
     public ResponseEntity<List<EmployeeDTO>> getTeamMembers(@PathVariable("managerId") String managerId) {
         log.info("Invoked the GET: getTeamMembers controller method, managerId:{}", managerId);
@@ -151,9 +203,18 @@ public class TeamController {
         return new ResponseEntity<>(getTeam, HttpStatus.OK);
     }
 
+    /**
+     * Retrieve team members with their upcoming shift information.
+     * <p>
+     * HTTP: GET /api/teams/{employeeId}/members-with-upcoming-shifts
+     * Security: Open endpoint.
+     * <p>
+     * Used for shift swap form display; available for employee usage.
+     *
+     * @param employeeId the unique identifier of the employee requesting team data
+     * @return list of team members with their upcoming shifts
+     */
 
-    // for usage in the create shift swap form
-    // only for employee usage
     @Operation(
             summary = "Get Team Members With Upcoming Shifts REST API",
             description = "Retrieve team members with their upcoming shift information"
@@ -187,6 +248,15 @@ public class TeamController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    /**
+     * Retrieve team employees formatted for shift creation form.
+     * <p>
+     * HTTP: GET /api/teams/manager/{managerId}/team-employees
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @return list of team employees formatted for shift form display
+     */
 
     @Operation(
             summary = "Get Team Employees For Shift Form REST API",

@@ -21,6 +21,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * REST controller that manages employee attendance operations.
+ * <p>
+ * Responsibilities:
+ * - Record employee check-in events.
+ * - Record employee check-out events.
+ * - Retrieve the latest attendance record for an employee.
+ * - Retrieve complete attendance history for an employee.
+ * - Retrieve team attendance for a specific date (manager view).
+ * <p>
+ * Base path: /api/attendances
+ * Security: Endpoints are protected and require appropriate roles as noted per method.
+ * <p>
+ * Created by: Sourasish Mondal
+ * Since: 2025-11-06
+ */
+
 @Tag(
         name = "Attendance CRUD Rest API",
         description = "REST APIs - Check-in, Check-out, Get Latest Attendance, Get Attendance History, Get Team Attendance By Date"
@@ -36,6 +53,15 @@ public class AttendanceController {
         this.attendanceService = attendanceService;
     }
 
+    /**
+     * Retrieve the most recent attendance record for a specific employee.
+     * <p>
+     * HTTP: GET /api/attendances/{employeeId}/latest
+     * Security: Requires EMPLOYEE role.
+     *
+     * @param employeeId the unique identifier of the employee
+     * @return the latest attendance record
+     */
 
     @Operation(
             summary = "Get Latest Attendance REST API",
@@ -67,7 +93,15 @@ public class AttendanceController {
         return new ResponseEntity<>(latestAttendance, HttpStatus.OK);
     }
 
-
+    /**
+     * Retrieve the entire attendance history for a specific employee.
+     * <p>
+     * HTTP: GET /api/attendances/{employeeId}/history
+     * Security: Open endpoint (EMPLOYEE role commented out).
+     *
+     * @param employeeId the unique identifier of the employee
+     * @return list of all attendance records for the employee
+     */
 
     @Operation(
             summary = "Get Attendance History REST API",
@@ -92,7 +126,6 @@ public class AttendanceController {
                     description = "Not Found - Employee not found"
             )
     })
-//    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/history")
     public ResponseEntity<List<AttendanceResponseDTO>> getAttendanceHistory(@PathVariable String employeeId) {
         log.info("Invoked the GET: getAttendanceHistory controller method, employeeId:{}", employeeId);
@@ -100,7 +133,16 @@ public class AttendanceController {
         return new ResponseEntity<>(history, HttpStatus.OK);
     }
 
-
+    /**
+     * Record a check-in event for an employee.
+     * <p>
+     * HTTP: POST /api/attendances/{employeeId}/check-in
+     * Security: Requires EMPLOYEE role.
+     *
+     * @param employeeId       the unique identifier of the employee
+     * @param checkInRequestDTO optional check-in metadata (e.g., location)
+     * @return the created attendance record with check-in timestamp
+     */
 
     @Operation(
             summary = "Check-in Employee REST API",
@@ -133,8 +175,15 @@ public class AttendanceController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-
-
+    /**
+     * Record a check-out event for an employee.
+     * <p>
+     * HTTP: POST /api/attendances/{employeeId}/check-out
+     * Security: Requires EMPLOYEE role.
+     *
+     * @param employeeId the unique identifier of the employee
+     * @return the updated attendance record with check-out timestamp
+     */
 
     @Operation(
             summary = "Check-out Employee REST API",
@@ -167,7 +216,16 @@ public class AttendanceController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-
+    /**
+     * Retrieve attendance records for a manager's entire team on a specific date.
+     * <p>
+     * HTTP: GET /api/attendances/{managerId}/attendance?date={date}
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @param date      the date to filter team attendance (format: ISO date string)
+     * @return team attendance data for the specified date
+     */
 
     @Operation(
             summary = "Get Team Attendance By Date REST API",
@@ -194,7 +252,7 @@ public class AttendanceController {
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}/attendance")
     public ResponseEntity<ManagerAttendanceDisplayByDateResponseDTO> getTeamAttendanceByDate(@PathVariable String managerId, @RequestParam("date") String date) {
-        log.info("Invoked the GET: getTeamAttendanceByDate controller method, managerId:{}", managerId);
+        log.info("Invoked the GET: getTeamAttendanceByDate controller method, managerId:{}, date:{}", managerId, date);
         ManagerAttendanceDisplayByDateResponseDTO teamAttendance = attendanceService.getTeamsAttendanceByDate(managerId, date);
         return new ResponseEntity<>(teamAttendance, HttpStatus.OK);
     }

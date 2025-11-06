@@ -77,7 +77,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public AttendanceResponseDTO checkIn(String employeeId, CheckInRequestDTO checkInRequestDTO) {
-        log.info("Invoked the checkIn service method, checkInRequestDTO:{}", checkInRequestDTO);
+        log.info("Invoked the checkIn service method, employeeId:{}, checkInRequestDTO:{}", employeeId, checkInRequestDTO);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         EmployeeDTO employee = employeeClient.getEmployeeById(employeeId);
@@ -153,7 +153,6 @@ public class AttendanceServiceImpl implements AttendanceService {
     @Override
     public ManagerAttendanceDisplayByDateResponseDTO getTeamsAttendanceByDate(String managerId, String date) {
         log.info("Invoked the getTeamsAttendanceByDate service method, managerId:{}, date:{}", managerId, date);
-        UUID mngID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
 
         if(employeeClient.getEmployeeById(managerId) == null) {
             throw new EmployeeNotFoundException(ErrorConstants.MANAGER_NOT_FOUND);

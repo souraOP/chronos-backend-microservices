@@ -25,6 +25,21 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * REST controller that manages shift assignments for employees and teams.
+ * <p>
+ * Responsibilities:
+ * - Create shift assignments for a manager's team.
+ * - Retrieve shifts for a specific employee.
+ * - Retrieve all shifts for a manager's team.
+ * - Retrieve team shifts for a specific date.
+ * <p>
+ * Base path: /api/shifts
+ * Security: Endpoints are protected and require appropriate roles as noted per method.
+ * <p>
+ * Created by: Sourasish Mondal
+ * Since: 2025-11-06
+ */
 
 @Tag(
         name = "Shift CRUD Rest API",
@@ -42,6 +57,16 @@ public class ShiftController {
         this.shiftService = shiftService;
     }
 
+    /**
+     * Create a new shift assignment for a manager's team members.
+     * <p>
+     * HTTP: POST /api/shifts/manager/{managerId}/create
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager creating the shift
+     * @param request   the shift creation payload containing date(s), employees, and shift details
+     * @return the created shift information
+     */
 
     @Operation(
             summary = "Create Shift REST API",
@@ -72,11 +97,20 @@ public class ShiftController {
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/create")
     public ResponseEntity<ShiftResponseDTO> createShift(@PathVariable String managerId, @Valid @RequestBody CreateShiftDateRequestDTO request) {
-        log.info("Invoked the createShift controller method, managerId={}", managerId);
+        log.info("Invoked the POST: createShift controller method, managerId={}, createShiftDateRequestDTO={}", managerId, request);
         ShiftResponseDTO createdShift = shiftService.createShift(request, managerId);
         return new ResponseEntity<>(createdShift, HttpStatus.CREATED);
     }
 
+    /**
+     * Retrieve all shift assignments for a specific employee.
+     * <p>
+     * HTTP: GET /api/shifts/{employeeId}
+     * Security: Requires EMPLOYEE role.
+     *
+     * @param employeeId the unique identifier of the employee
+     * @return list of shifts associated with the employee
+     */
 
     @Operation(
             summary = "Get Employee Shifts REST API",
@@ -107,11 +141,20 @@ public class ShiftController {
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<ShiftResponseDTO>> getEmployeeShifts(@PathVariable String employeeId) {
-        log.info("Invoked the getEmployeeShifts controller method, employeeId={}", employeeId);
+        log.info("Invoked the GET: getEmployeeShifts controller method, employeeId={}", employeeId);
         List<ShiftResponseDTO> shifts = shiftService.getEmployeeShifts(employeeId);
         return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
 
+    /**
+     * Retrieve all shift assignments for a manager's entire team.
+     * <p>
+     * HTTP: GET /api/shifts/manager/{managerId}/team-shifts
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @return list of shifts for all team members under the manager
+     */
 
     @Operation(
             summary = "Get Team Shifts REST API",
@@ -142,11 +185,21 @@ public class ShiftController {
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts")
     public ResponseEntity<List<ShiftResponseDTO>> getTeamsShiftByManager(@PathVariable String managerId) {
-        log.info("Invoked the getTeamsShiftByManager controller method, managerId={}", managerId);
+        log.info("Invoked the GET: getTeamsShiftByManager controller method, managerId={}", managerId);
         List<ShiftResponseDTO> shifts = shiftService.getTeamsShiftByManager(managerId);
         return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
 
+    /**
+     * Retrieve team shift assignments filtered by a specific date.
+     * <p>
+     * HTTP: GET /api/shifts/manager/{managerId}/team-shifts-by-date?date={ISO_DATE}
+     * Security: Requires MANAGER role.
+     *
+     * @param managerId the unique identifier of the manager
+     * @param date      the date (ISO format) to filter team shifts
+     * @return a tabular view model of team shifts for the specified date
+     */
 
     @Operation(
             summary = "Get Team Shifts By Date REST API",
@@ -180,7 +233,7 @@ public class ShiftController {
             @PathVariable String managerId,
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate date
     ) {
-        log.info("Invoked the getTeamShiftsByManagerAndDatePicker controller method, managerId={}", managerId);
+        log.info("Invoked the GET: getTeamShiftsByManagerAndDatePicker controller method, managerId={}, date={}", managerId, date);
         List<TeamShiftTableRowDTO> response = shiftService.getTeamShiftsByManagerAndDatePicker(managerId, date);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
