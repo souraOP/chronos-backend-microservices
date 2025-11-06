@@ -13,3 +13,11 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    com.chronos.authservice.controller: INFO
+  file:
+    name: auth-service/src/main/java/com/chronos/authservice/logs/auth-service.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"

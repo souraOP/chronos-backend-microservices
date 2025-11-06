@@ -16,6 +16,7 @@ import com.chronos.common.exception.custom.LoginFailedException;
 import com.chronos.common.exception.custom.PasswordDoNotMatchException;
 import com.chronos.common.exception.custom.ResourceNotFoundException;
 import com.chronos.common.util.NanoIdGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class LoginServiceImpl implements LoginService {
     private final LoginRepository loginRepository;
@@ -49,11 +51,13 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public LoginResponseDTO loginEmployee(LoginDTO loginDTO) {
+        log.info("Invoked the loginEmployee service method, loginDTO:{}", loginDTO);
         return doLogin(loginDTO, Role.EMPLOYEE, LoginConstants.EMPLOYEE_LOGIN_SUCCESS, ErrorConstants.EMPLOYEE_LOGIN_FAILED);
     }
 
     @Override
     public LoginResponseDTO loginManager(LoginDTO loginDTO) {
+        log.info("Invoked the loginManager service method, loginDTO:{}", loginDTO);
         return doLogin(loginDTO, Role.MANAGER, LoginConstants.MANAGER_LOGIN_SUCCESS, ErrorConstants.MANAGER_LOGIN_FAILED);
     }
 
@@ -95,6 +99,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     @Transactional
     public CreateLoginCredentialResponseDTO createLoginCredentials(CreateLoginCredentialDTO createLoginCredentialDTO) {
+        log.info("Invoked the createLoginCredentials service method, createLoginCredentialDTO:{}", createLoginCredentialDTO);
         EmployeeDTO employee = employeeClient.getEmployeeByDisplayId(createLoginCredentialDTO.employeeId());
 
         LoginCredential loginCredential = new LoginCredential();
@@ -120,6 +125,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
+        log.info("Invoked the getLoginCredentialsByEmail service method, email:{}", email);
         LoginCredential loginCredential = loginRepository.findByEmailView(email)
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
 
@@ -129,6 +135,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     @Transactional
     public ChangePasswordResponseDTO changePassword(String email, ChangePasswordDTO changePasswordDTO) {
+        log.info("Invoked the changePassword service method, email:{}. changePasswordDTO:{}", email, changePasswordDTO);
         if (!changePasswordDTO.newPassword().equals(changePasswordDTO.confirmPassword())) {
             throw new PasswordDoNotMatchException(ErrorConstants.NEW_PASSWORD_CONFIRM_PASSWORD_NOT_MATCH);
         }

@@ -19,6 +19,7 @@ import com.chronos.common.exception.custom.ActiveAttendanceNotFoundException;
 import com.chronos.common.exception.custom.EmployeeNotFoundException;
 import com.chronos.common.exception.custom.InvalidDateException;
 import com.chronos.common.util.NanoIdGenerator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +35,7 @@ import java.util.stream.Collectors;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
-
+@Slf4j
 @Service
 public class AttendanceServiceImpl implements AttendanceService {
 
@@ -49,6 +50,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public AttendanceResponseDTO getLatestAttendance(String employeeId) {
+        log.info("Invoked the getLatestAttendance service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
         List<AttendanceResponseDTO> list = attendanceRepository.findAllByEmployeeOrderByDateDesc(empID);
 
@@ -68,13 +70,14 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public List<AttendanceResponseDTO> getAttendanceHistory(String employeeId) {
+        log.info("Invoked the getAttendanceHistory service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
-
         return attendanceRepository.findAllByEmployeeOrderByDateDesc(empID);
     }
 
     @Override
     public AttendanceResponseDTO checkIn(String employeeId, CheckInRequestDTO checkInRequestDTO) {
+        log.info("Invoked the checkIn service method, checkInRequestDTO:{}", checkInRequestDTO);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         EmployeeDTO employee = employeeClient.getEmployeeById(employeeId);
@@ -116,6 +119,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public AttendanceResponseDTO checkOut(String employeeId) {
+        log.info("Invoked the checkOut service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         EmployeeDTO employee = employeeClient.getEmployeeById(employeeId);
@@ -148,6 +152,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 
     @Override
     public ManagerAttendanceDisplayByDateResponseDTO getTeamsAttendanceByDate(String managerId, String date) {
+        log.info("Invoked the getTeamsAttendanceByDate service method, managerId:{}, date:{}", managerId, date);
         UUID mngID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
 
         if(employeeClient.getEmployeeById(managerId) == null) {

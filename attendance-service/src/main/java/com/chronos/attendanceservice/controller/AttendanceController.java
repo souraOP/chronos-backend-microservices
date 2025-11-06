@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import java.util.List;
         name = "Attendance CRUD Rest API",
         description = "REST APIs - Check-in, Check-out, Get Latest Attendance, Get Attendance History, Get Team Attendance By Date"
 )
+@Slf4j
 @RestController
 @RequestMapping("/api/attendances")
 public class AttendanceController {
@@ -40,15 +42,27 @@ public class AttendanceController {
             description = "Fetches the most recent attendance record for a specific employee"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved latest attendance",
-                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee or attendance record not found")
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved latest attendance"
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid employee ID format"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Employee or attendance record not found"
+            )
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/latest")
     public ResponseEntity<AttendanceResponseDTO> getLatestAttendance(@PathVariable String employeeId) {
+        log.info("Invoked the GET: getLatestAttendance controller method, employeeId:{}", employeeId);
         AttendanceResponseDTO latestAttendance = attendanceService.getLatestAttendance(employeeId);
         return new ResponseEntity<>(latestAttendance, HttpStatus.OK);
     }
@@ -60,15 +74,28 @@ public class AttendanceController {
             description = "Fetches the entire attendance history for a specific employee."
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved attendance history",
-                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO[].class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved attendance history",
+                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO[].class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid employee ID format"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Employee not found"
+            )
     })
 //    @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/history")
     public ResponseEntity<List<AttendanceResponseDTO>> getAttendanceHistory(@PathVariable String employeeId) {
+        log.info("Invoked the GET: getAttendanceHistory controller method, employeeId:{}", employeeId);
         List<AttendanceResponseDTO> history = attendanceService.getAttendanceHistory(employeeId);
         return new ResponseEntity<>(history, HttpStatus.OK);
     }
@@ -80,20 +107,31 @@ public class AttendanceController {
             description = "Creates a check-in record for an employee"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Successfully checked in",
-                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid input data"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Successfully checked in",
+                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid input data"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Employee not found"
+            )
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}/check-in")
-    public ResponseEntity<AttendanceResponseDTO> checkIn(@PathVariable String employeeId,
-                                                         @Valid @RequestBody(required = false) CheckInRequestDTO checkInRequestDTO) {
+    public ResponseEntity<AttendanceResponseDTO> checkIn(@PathVariable String employeeId, @Valid @RequestBody(required = false) CheckInRequestDTO checkInRequestDTO) {
+        log.info("Invoked the POST: checkIn controller method, employeeId:{}, checkInRequestDTO:{}", employeeId, checkInRequestDTO);
         AttendanceResponseDTO response = attendanceService.checkIn(employeeId, checkInRequestDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
-
 
 
 
@@ -103,15 +141,28 @@ public class AttendanceController {
             description = "Creates a check-out record for an employee"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Successfully checked out",
-                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Successfully checked out",
+                    content = @Content(schema = @Schema(implementation = AttendanceResponseDTO.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid employee ID format"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Employee not found"
+            )
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}/check-out")
     public ResponseEntity<AttendanceResponseDTO> checkOut(@PathVariable String employeeId) {
+        log.info("Invoked the POST: checkOut controller method, employeeId:{}", employeeId);
         AttendanceResponseDTO response = attendanceService.checkOut(employeeId);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
@@ -123,16 +174,27 @@ public class AttendanceController {
             description = "Fetches manager's entire team attendance record for a specific date"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved team attendance",
-                    content = @Content(schema = @Schema(implementation = ManagerAttendanceDisplayByDateResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID or date format"),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found")
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved team attendance"
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid manager ID or date format"
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required"
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Manager not found"
+            )
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}/attendance")
-    public ResponseEntity<ManagerAttendanceDisplayByDateResponseDTO> getTeamAttendanceByDate(@PathVariable String managerId,
-                                                                                             @RequestParam("date") String date) {
+    public ResponseEntity<ManagerAttendanceDisplayByDateResponseDTO> getTeamAttendanceByDate(@PathVariable String managerId, @RequestParam("date") String date) {
+        log.info("Invoked the GET: getTeamAttendanceByDate controller method, managerId:{}", managerId);
         ManagerAttendanceDisplayByDateResponseDTO teamAttendance = attendanceService.getTeamsAttendanceByDate(managerId, date);
         return new ResponseEntity<>(teamAttendance, HttpStatus.OK);
     }

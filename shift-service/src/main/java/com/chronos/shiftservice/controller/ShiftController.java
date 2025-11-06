@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Tag(
         name = "Shift CRUD Rest API",
         description = "REST APIs - Create Shift, Get Employee Shifts, Get Team Shifts, Get Team Shifts By Date"
@@ -32,12 +35,12 @@ import java.util.List;
 public class ShiftController {
     private final ShiftServiceImpl shiftService;
 
+    private static final Logger log = LoggerFactory.getLogger(ShiftController.class);
+
     @Autowired
     public ShiftController(ShiftServiceImpl shiftService) {
         this.shiftService = shiftService;
     }
-
-
 
 
     @Operation(
@@ -45,23 +48,34 @@ public class ShiftController {
             description = "Create a new shift assignment for manager's team members"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully created shift",
-                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO.class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid input data or manager ID",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully created shift",
+                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO.class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid input data or manager ID",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Manager not found",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            )
     })
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/manager/{managerId}/create")
     public ResponseEntity<ShiftResponseDTO> createShift(@PathVariable String managerId, @Valid @RequestBody CreateShiftDateRequestDTO request) {
+        log.info("Invoked the createShift controller method, managerId={}", managerId);
         ShiftResponseDTO createdShift = shiftService.createShift(request, managerId);
         return new ResponseEntity<>(createdShift, HttpStatus.CREATED);
     }
-
-
 
 
     @Operation(
@@ -69,23 +83,34 @@ public class ShiftController {
             description = "Retrieve all shift assignments for a specific employee"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved employee shifts",
-                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO[].class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved employee shifts",
+                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO[].class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid employee ID format",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Employee not found",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            )
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<ShiftResponseDTO>> getEmployeeShifts(@PathVariable String employeeId) {
+        log.info("Invoked the getEmployeeShifts controller method, employeeId={}", employeeId);
         List<ShiftResponseDTO> shifts = shiftService.getEmployeeShifts(employeeId);
         return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
-
-
 
 
     @Operation(
@@ -93,23 +118,34 @@ public class ShiftController {
             description = "Retrieve all shift assignments for manager's entire team"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved team shifts",
-                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO[].class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID format",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved team shifts",
+                    content = @Content(schema = @Schema(implementation = ShiftResponseDTO[].class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid manager ID format",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Manager not found",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            )
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts")
     public ResponseEntity<List<ShiftResponseDTO>> getTeamsShiftByManager(@PathVariable String managerId) {
+        log.info("Invoked the getTeamsShiftByManager controller method, managerId={}", managerId);
         List<ShiftResponseDTO> shifts = shiftService.getTeamsShiftByManager(managerId);
         return new ResponseEntity<>(shifts, HttpStatus.OK);
     }
-
-
 
 
     @Operation(
@@ -117,14 +153,26 @@ public class ShiftController {
             description = "Retrieve team shift assignments filtered by specific date"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved team shifts by date",
-                    content = @Content(schema = @Schema(implementation = TeamShiftTableRowDTO[].class))),
-            @ApiResponse(responseCode = "400", description = "Bad Request - Invalid manager ID or date format",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Successfully retrieved team shifts by date",
+                    content = @Content(schema = @Schema(implementation = TeamShiftTableRowDTO[].class))
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Bad Request - Invalid manager ID or date format",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "401",
+                    description = "Unauthorized - Authentication required",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Not Found - Manager not found",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))
+            )
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/manager/{managerId}/team-shifts-by-date")
@@ -132,6 +180,7 @@ public class ShiftController {
             @PathVariable String managerId,
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate date
     ) {
+        log.info("Invoked the getTeamShiftsByManagerAndDatePicker controller method, managerId={}", managerId);
         List<TeamShiftTableRowDTO> response = shiftService.getTeamShiftsByManagerAndDatePicker(managerId, date);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

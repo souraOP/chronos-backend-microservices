@@ -13,3 +13,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+
+
+logging:
+  level:
+    com.chronos.shiftservice.controller: INFO
+  file:
+    name: shift-service/src/main/java/com/chronos/shiftservice/logs/shift-service.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"

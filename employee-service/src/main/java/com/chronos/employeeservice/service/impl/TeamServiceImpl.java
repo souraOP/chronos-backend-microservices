@@ -1,6 +1,5 @@
 package com.chronos.employeeservice.service.impl;
 
-
 import com.chronos.common.constants.ErrorConstants;
 import com.chronos.common.constants.UuidErrorConstants;
 import com.chronos.common.dto.EmployeeDTO;
@@ -12,6 +11,7 @@ import com.chronos.employeeservice.repository.EmployeeRepository;
 import com.chronos.employeeservice.repository.TeamRepository;
 import com.chronos.employeeservice.service.TeamService;
 import com.chronos.employeeservice.util.mappers.EmployeeMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
+@Slf4j
 @Service
 public class TeamServiceImpl implements TeamService {
     private final TeamRepository teamRepository;
@@ -41,6 +42,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     @Transactional
     public TeamDTO createTeam(TeamDTO teamDTO) {
+        log.info("Invoked the createTeam service method, teamDTO:{}", teamDTO);
         Team team = new Team();
         team.setTeamId(teamDTO.teamId());
         team.setTeamName(teamDTO.teamName());
@@ -49,8 +51,6 @@ public class TeamServiceImpl implements TeamService {
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.MANAGER_NOT_FOUND));
 
         team.setTeamManager(manager);
-//        Team savedTeam = teamRepository.save(team);
-//        manager.setTeam(savedTeam);
 
         List<Employee> employees = new ArrayList<>();
         for (UUID employeeId : teamDTO.employeeIds()) {
@@ -62,8 +62,6 @@ public class TeamServiceImpl implements TeamService {
         }
         team.setEmployees(employees);
 
-//        employeeRepository.save(manager);
-
         teamRepository.save(team);
         employeeRepository.saveAll(employees);
         return teamDTO;
@@ -71,6 +69,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<EmployeeDTO> getTeamMembers(String managerId) {
+        log.info("Invoked the getTeamMembers service method, managerId:{}", managerId);
         UUID mngID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
 
         Team team = teamRepository.findByTeamManagerId(mngID)
@@ -83,7 +82,8 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public int getTeamSize(String managerId){
+    public int getTeamSize(String managerId) {
+        log.info("Invoked the getTeamSize service method, managerId:{}", managerId);
         UUID mngID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
 
         long getTeamCount = teamRepository.countTeamEmployeesByManagerId(mngID);
@@ -93,10 +93,11 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     @Transactional
-    public void deleteTeam(String teamId){
+    public void deleteTeam(String teamId) {
+        log.info("Invoked the deleteTeam service method, teamId:{}", teamId);
         UUID teamID = parseUUID(teamId, UuidErrorConstants.INVALID_TEAM_ID);
 
-        if(!teamRepository.existsById(teamID)) {
+        if (!teamRepository.existsById(teamID)) {
             throw new RuntimeException(ErrorConstants.EMPLOYEE_WITH_NO_TEAM);
         }
 
@@ -104,12 +105,13 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId){
+    public List<TeamMembersShiftDTO> getTeamMembersWithUpcomingShifts(String employeeId) {
+        log.info("Invoked the getTeamMembersWithUpcomingShifts service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         List<Employee> teamEmployees = employeeRepository.findTeamEmployeesExcludingSelfAndManager(empID);
 
-        if(teamEmployees.isEmpty()) {
+        if (teamEmployees.isEmpty()) {
             return List.of();
         }
 
@@ -134,6 +136,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public List<TeamEmployeesShiftFormResponseDTO> getTeamEmployeesByManagerInCreateShiftForm(String managerId) {
+        log.info("Invoked the getTeamEmployeesByManagerInCreateShiftForm service method, managerId:{}", managerId);
         UUID managerID = parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID);
 
         return teamRepository.findTeamEmployeesByManager(managerID);

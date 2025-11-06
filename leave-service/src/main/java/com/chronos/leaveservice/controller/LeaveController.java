@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import java.util.List;
         name = "Leave CRUD Rest API",
         description = "REST APIs - Create Leave Request, Get Leave Requests by Employee, Get Leave Request Employee Dashboard"
 )
+@Slf4j
 @RestController
 @RequestMapping("/api/leave-requests/employees")
 public class LeaveController {
@@ -45,13 +47,12 @@ public class LeaveController {
                     content = @Content(schema = @Schema(implementation = LeaveRequestResponseDTO.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid input data or validation failed"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @PostMapping("/{employeeId}")
     public ResponseEntity<LeaveRequestResponseDTO> createLeaveRequest(@PathVariable("employeeId") String employeeId, @Valid @RequestBody LeaveRequestCreateRequestDTO requestDTO) {
+        log.info("Invoked the POST: createLeaveRequest controller method, employeeId:{}, requestDTO:{}", employeeId, requestDTO);
         LeaveRequestResponseDTO createdLR = leaveRequestService.createLeaveRequest(employeeId, requestDTO);
         return new ResponseEntity<>(createdLR, HttpStatus.CREATED);
     }
@@ -67,13 +68,12 @@ public class LeaveController {
                     content = @Content(schema = @Schema(implementation = LeaveRequestResponseDTO[].class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}")
     public ResponseEntity<List<LeaveRequestResponseDTO>> getLeaveRequestByEmployee(@PathVariable("employeeId") String employeeId) {
+        log.info("Invoked the GET: getLeaveRequestByEmployee controller method, employeeId:{}", employeeId);
         List<LeaveRequestResponseDTO> getLeaveRequests = leaveRequestService.getEmployeeLeaveRequests(employeeId);
         return new ResponseEntity<>(getLeaveRequests, HttpStatus.OK);
     }
@@ -90,13 +90,12 @@ public class LeaveController {
                     content = @Content(schema = @Schema(implementation = EmployeeLeaveRequestDashboardResponseDTO[].class))),
             @ApiResponse(responseCode = "400", description = "Bad Request - Invalid employee ID format"),
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required"),
-            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found"),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
-                    content = @Content(schema = @Schema(implementation = Void.class)))
+            @ApiResponse(responseCode = "404", description = "Not Found - Employee not found")
     })
     @PreAuthorize("hasRole('EMPLOYEE')")
     @GetMapping("/{employeeId}/dashboard")
-    public ResponseEntity<List<EmployeeLeaveRequestDashboardResponseDTO>> getLeaveRequestEmployeeDashboard(@PathVariable String employeeId) {
+    public ResponseEntity<List<EmployeeLeaveRequestDashboardResponseDTO>> getLeaveRequestEmployeeDashboard(@PathVariable("employeeId") String employeeId) {
+        log.info("Invoked the GET: getLeaveRequestEmployeeDashboard controller method, employeeId:{}", employeeId);
         List<EmployeeLeaveRequestDashboardResponseDTO> getLeaveRequestDashboard = leaveRequestService.getLeaveRequestEmployeeDashboard(employeeId);
         return new ResponseEntity<>(getLeaveRequestDashboard, HttpStatus.OK);
     }
