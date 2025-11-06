@@ -24,6 +24,5 @@ public class ShiftInternalController {
     public ResponseEntity<Map<UUID, List<ShiftCardDTO>>> getUpcomingByEmployeeIds(@RequestBody UpcomingShiftsRequestDTO request) {
         Map<UUID, List<ShiftCardDTO>> getShifts = shiftServiceInternal.getUpcomingShiftsByEmployeeIds(request);
         return new ResponseEntity<>(getShifts, HttpStatus.OK);
-
     }
 }

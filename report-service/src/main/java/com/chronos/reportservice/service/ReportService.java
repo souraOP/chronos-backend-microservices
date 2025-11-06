@@ -8,7 +8,7 @@ import java.util.List;
 public interface ReportService {
     ReportResponseDTO generatedReportForManager(String managerId, LocalDate startDate, LocalDate endDate);
 
-    List<ReportResponseDTO> getRecentReportsForManager(String managerId, int size);
+    List<ReportResponseDTO> getRecentReportsForManager(String managerId);
 
-    List<ReportResponseDTO> getRecentReportsForTeam(String teamId, int size);
+    List<ReportResponseDTO> getRecentReportsForTeam(String teamId);
 }

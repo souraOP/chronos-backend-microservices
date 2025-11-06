@@ -15,6 +15,7 @@ import com.chronos.leaveservice.entity.LeaveBalance;
 import com.chronos.leaveservice.feign.EmployeeClient;
 import com.chronos.leaveservice.repository.LeaveBalanceRepository;
 import com.chronos.leaveservice.util.mapper.LeaveBalanceMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ import java.util.UUID;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
+@Slf4j
 @Service
 public class LeaveBalanceServiceImpl implements com.chronos.leaveservice.service.LeaveBalanceService {
     private final LeaveBalanceRepository leaveBalanceRepository;
@@ -37,6 +39,7 @@ public class LeaveBalanceServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public List<LeaveBalanceResponseDTO> getLeaveBalancesByEmployeeId(String employeeId) {
+        log.info("Invoked the getLeaveBalancesByEmployeeId service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         return leaveBalanceRepository.findLeaveBalanceViewByEmployeeId(empID)
@@ -47,6 +50,7 @@ public class LeaveBalanceServiceImpl implements com.chronos.leaveservice.service
     @Override
     @Transactional
     public LeaveBalanceDTO createLeaveBalance(String employeeId, LeaveType leaveType, int leaveBalance) {
+        log.info("Invoked the createLeaveBalance service method, employeeId:{}, leaveType:{}, leaveBalance:{}", employeeId, leaveType, leaveBalance);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         EmployeeDTO employee = employeeClient.getEmployeeById(employeeId);

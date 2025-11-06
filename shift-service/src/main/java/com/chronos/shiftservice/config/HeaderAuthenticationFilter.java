@@ -21,15 +21,15 @@ public class HeaderAuthenticationFilter extends OncePerRequestFilter {
         String role = request.getHeader(HEADER_ROLE);
         String email = request.getHeader(HEADER_EMAIL);
 
-        if(role != null && !role.isBlank() && SecurityContextHolder.getContext().getAuthentication() == null) {
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
-            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                    email, null, List.of(authority)
-            );
-
-            SecurityContextHolder.getContext().setAuthentication(auth);
+        if (role != null && !role.isBlank() && email != null && !email.isBlank()) {
+            if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                        email, null, List.of(authority)
+                );
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
         }
-
         filterChain.doFilter(request, response);
     }
 }

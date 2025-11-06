@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import java.util.List;
         name = "Manager Leave Request CRUD Rest API",
         description = "REST APIs - Get Team Leave Requests, Take Action on Leave Requests, Get Leave Request Stats, Get Manager Dashboard"
 )
+@Slf4j
 @RestController
 @RequestMapping("/api/leave-requests/manager")
 public class ManagerLeaveRequestController {
@@ -52,13 +54,12 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}")
-    public ResponseEntity<List<ManagerLeaveRequestDTO>> getTeamLeaveRequests(@PathVariable String managerId) {
+    public ResponseEntity<List<ManagerLeaveRequestDTO>> getTeamLeaveRequests(@PathVariable("managerId") String managerId) {
+        log.info("Invoked the GET: getTeamLeaveRequests controller method, managerId:{}", managerId);
         List<ManagerLeaveRequestDTO> getManagerLeaveRequest = leaveRequestService.getTeamLeaveRequests(managerId);
         return new ResponseEntity<>(getManagerLeaveRequest, HttpStatus.OK);
     }
@@ -79,18 +80,14 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager or leave request not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @PostMapping("/{requestId}/action")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void actionOnLeaveRequest(
-            @RequestParam String managerId,
-            @PathVariable String requestId,
-            @Valid @RequestBody LeaveRequestActionDTO leaveRequestActionDTO
+    public void actionOnLeaveRequest(@RequestParam String managerId, @PathVariable String requestId, @Valid @RequestBody LeaveRequestActionDTO leaveRequestActionDTO
     ) {
+        log.info("Invoked the POST: actionOnLeaveRequest controller method, managerId:{}, requestId:{}, leaveRequestActionDTO:{}", managerId, requestId, leaveRequestActionDTO);
         leaveRequestService.actionOnLeaveRequest(managerId, requestId, leaveRequestActionDTO);
     }
 
@@ -109,13 +106,12 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("{managerId}/stats")
-    public ResponseEntity<ManagerLeaveRequestDataDTO> getTeamsLeaveRequestStats(@PathVariable String managerId) {
+    public ResponseEntity<ManagerLeaveRequestDataDTO> getTeamsLeaveRequestStats(@PathVariable("managerId") String managerId) {
+        log.info("Invoked the GET: getTeamsLeaveRequestStats controller method, managerId:{}", managerId);
         ManagerLeaveRequestDataDTO stats = leaveRequestService.getLeaveRequestsStatsByManager(managerId);
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
@@ -135,13 +131,12 @@ public class ManagerLeaveRequestController {
             @ApiResponse(responseCode = "401", description = "Unauthorized - Authentication required",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
             @ApiResponse(responseCode = "404", description = "Not Found - Manager not found",
-                    content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     @PreAuthorize("hasRole('MANAGER')")
     @GetMapping("/{managerId}/dashboard")
-    public ResponseEntity<List<ManagerLeaveRequestDashboardResponseDTO>> getLeaveRequestManagerDashboard(@PathVariable String managerId) {
+    public ResponseEntity<List<ManagerLeaveRequestDashboardResponseDTO>> getLeaveRequestManagerDashboard(@PathVariable("managerId") String managerId) {
+        log.info("Invoked the GET: getLeaveRequestManagerDashboard controller method, managerId:{}", managerId);
         List<ManagerLeaveRequestDashboardResponseDTO> leaveRequestData = leaveRequestService.getLeaveRequestManagerDashboard(managerId);
         return new ResponseEntity<>(leaveRequestData, HttpStatus.OK);
     }

@@ -1,0 +1,716 @@
+2025-11-06 09:58:01.129 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 09:58:02.264 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 09:58:02.599 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 09:58:02.602 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 09:58:02.626 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 09:58:05.064 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 09:58:05.461 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 09:58:05.719 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 241 ms. Found 2 JPA repository interfaces.
+2025-11-06 09:58:05.784 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 09:58:05.948 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 09:58:05.949 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 09:58:05.966 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 09:58:06.214 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 09:58:08.038 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 09:58:08.058 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 09:58:08.058 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 09:58:08.176 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 09:58:08.177 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5504 ms
+2025-11-06 09:58:08.285 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 09:58:08.591 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 290 ms. Found 2 JPA repository interfaces.
+2025-11-06 09:58:09.507 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 09:58:09.539 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 09:58:09.741 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 09:58:09.827 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 09:58:10.707 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 09:58:10.829 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 09:58:11.286 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 09:58:11.305 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 09:58:11.306 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 09:58:11.428 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 09:58:11.429 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5434 ms
+2025-11-06 09:58:11.498 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c315cc4
+2025-11-06 09:58:11.512 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 09:58:11.652 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 09:58:11.655 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 09:58:11.705 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 09:58:13.987 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 09:58:14.112 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 09:58:14.251 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 09:58:15.266 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 09:58:15.342 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 09:58:15.827 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 09:58:16.204 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:58:16.296 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3051797c
+2025-11-06 09:58:16.300 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 09:58:16.384 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 09:58:16.387 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 09:58:16.469 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 09:58:17.355 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 09:58:18.979 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 09:58:19.199 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 09:58:19.336 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:58:19.692 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 09:58:20.049 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 09:58:20.529 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 09:58:22.514 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 09:58:22.889 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 09:58:23.087 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 09:58:23.849 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 09:58:25.519 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 09:58:26.222 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 09:58:26.309 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 09:58:26.458 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 09:58:26.498 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 09:58:26.504 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 09:58:26.517 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 09:58:26.517 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 09:58:26.517 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 09:58:26.518 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 09:58:26.518 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 09:58:26.518 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 09:58:26.518 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 09:58:26.864 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 09:58:26.872 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 09:58:26.876 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 09:58:26.879 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762403306878 with initial instances count: 7
+2025-11-06 09:58:26.907 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 09:58:26.910 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403306910, current=UP, previous=STARTING]
+2025-11-06 09:58:26.911 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:58:26.945 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8086 (http) with context path '/'
+2025-11-06 09:58:26.945 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8086
+2025-11-06 09:58:26.969 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:58:26.969 INFO  c.c.s.ShiftServiceApplication - Started ShiftServiceApplication in 27.058 seconds (process running for 28.506)
+2025-11-06 09:58:27.109 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-06 09:58:27.109 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-06 09:58:27.112 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-11-06 09:58:27.371 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 09:58:27.559 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 09:58:27.696 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 09:58:27.723 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 09:58:27.731 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 09:58:27.745 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 09:58:28.038 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 09:58:28.040 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 09:58:28.042 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 09:58:28.044 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762403308044 with initial instances count: 7
+2025-11-06 09:58:28.058 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 09:58:28.059 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403308059, current=UP, previous=STARTING]
+2025-11-06 09:58:28.059 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:58:28.065 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application SHIFT-SERVICE with eureka with status DOWN
+2025-11-06 09:58:28.065 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403308065, current=DOWN, previous=UP]
+2025-11-06 09:58:28.065 WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-11-06 09:58:28.077 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:58:28.079 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-06 09:58:28.088 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-06 09:58:28.089 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-06 09:58:28.101 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:58:28.102 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:58:28.105 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:58:28.105 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ...
+2025-11-06 09:58:28.110 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - deregister  status: 200
+2025-11-06 09:58:28.111 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2025-11-06 09:58:28.111 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-11-06 09:58:28.142 INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-06 09:58:28.179 ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8086 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8086 or configure this application to listen on another port.
+
+2025-11-06 09:58:35.630 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application SHIFT-SERVICE with eureka with status DOWN
+2025-11-06 09:58:35.631 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403315631, current=DOWN, previous=UP]
+2025-11-06 09:58:35.632 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:58:35.641 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-06 09:58:35.651 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-06 09:58:35.654 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:58:35.667 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:58:35.671 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-06 09:58:35.677 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-06 09:58:35.678 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-06 09:58:38.684 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ...
+2025-11-06 09:58:38.704 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - deregister  status: 200
+2025-11-06 09:58:38.704 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2025-11-06 09:58:41.897 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 09:58:42.363 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 09:58:42.507 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 09:58:42.509 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 09:58:42.518 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 09:58:43.719 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 09:58:43.845 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 118 ms. Found 2 JPA repository interfaces.
+2025-11-06 09:58:44.211 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 09:58:45.237 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 09:58:45.247 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 09:58:45.248 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 09:58:45.308 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 09:58:45.308 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2771 ms
+2025-11-06 09:58:45.872 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 09:58:45.918 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 09:58:45.953 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 09:58:46.228 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 09:58:46.254 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 09:58:46.576 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bfa7ecb
+2025-11-06 09:58:46.578 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 09:58:46.627 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 09:58:46.628 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 09:58:46.643 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 09:58:47.750 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 09:58:47.832 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:58:48.201 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 09:58:48.924 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 09:58:49.062 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 09:58:49.136 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 09:58:50.544 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 09:58:51.995 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 09:58:52.082 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 09:58:52.257 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 09:58:52.277 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 09:58:52.279 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 09:58:52.286 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 09:58:52.287 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 09:58:52.781 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 09:58:52.786 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 09:58:52.788 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 09:58:52.789 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762403332789 with initial instances count: 7
+2025-11-06 09:58:52.801 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 09:58:52.802 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403332802, current=UP, previous=STARTING]
+2025-11-06 09:58:52.804 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:58:52.839 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8086 (http) with context path '/'
+2025-11-06 09:58:52.840 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8086
+2025-11-06 09:58:52.857 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:58:52.864 INFO  c.c.s.ShiftServiceApplication - Started ShiftServiceApplication in 11.64 seconds (process running for 12.611)
+2025-11-06 09:58:53.184 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-06 09:58:53.184 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-06 09:58:53.186 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-06 09:59:22.758 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application SHIFT-SERVICE with eureka with status DOWN
+2025-11-06 09:59:22.758 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403362758, current=DOWN, previous=UP]
+2025-11-06 09:59:22.759 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 09:59:22.761 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-06 09:59:22.765 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 09:59:22.772 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-06 09:59:22.783 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 09:59:22.785 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-06 09:59:22.793 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-06 09:59:22.795 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-06 09:59:25.801 WARN  c.n.discovery.TimedSupervisorTask - task supervisor shutting down, can't accept the task
+2025-11-06 09:59:25.801 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ...
+2025-11-06 09:59:25.820 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - deregister  status: 200
+2025-11-06 09:59:25.821 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2025-11-06 09:59:58.938 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 09:59:59.375 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 09:59:59.492 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 09:59:59.492 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 09:59:59.504 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 10:00:00.776 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 10:00:00.904 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 118 ms. Found 2 JPA repository interfaces.
+2025-11-06 10:00:01.200 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 10:00:01.894 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 10:00:01.906 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 10:00:01.906 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 10:00:01.973 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 10:00:01.973 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2450 ms
+2025-11-06 10:00:02.548 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 10:00:02.610 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 10:00:02.648 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 10:00:02.932 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 10:00:02.966 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 10:00:04.608 WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1045, SQLState: 28000
+2025-11-06 10:00:04.608 ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Access denied for user 'root'@'localhost' (using password: YES)
+2025-11-06 10:00:04.609 WARN  o.h.e.j.e.i.JdbcEnvironmentInitiator - HHH000342: Could not obtain connection to query metadata
+org.hibernate.exception.GenericJDBCException: unable to obtain isolated JDBC connection [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:116) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.getJdbcEnvironmentUsingJdbcMetadata(JdbcEnvironmentInitiator.java:334) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:129) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:81) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:130) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.model.relational.Database.<init>(Database.java:45) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.getDatabase(InFlightMetadataCollectorImpl.java:226) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:194) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:171) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1442) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1513) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.chronos.shiftservice.ShiftServiceApplication.main(ShiftServiceApplication.java:37) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.5.7.jar:3.5.7]
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:839) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:415) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-6.3.3.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcIsolationDelegate.delegateWork(JdbcIsolationDelegate.java:61) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	... 38 common frames omitted
+2025-11-06 10:00:04.636 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 10:00:04.638 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 10:00:04.654 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (null)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 10:00:05.779 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 10:00:05.819 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 10:00:06.844 WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1045, SQLState: 28000
+2025-11-06 10:00:06.844 ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Access denied for user 'root'@'localhost' (using password: YES)
+2025-11-06 10:00:06.848 ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+2025-11-06 10:00:06.849 WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+2025-11-06 10:00:06.852 INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2025-11-06 10:00:06.872 INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-11-06 10:00:06.893 ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:973) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.12.jar:6.2.12]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.7.jar:3.5.7]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.7.jar:3.5.7]
+	at com.chronos.shiftservice.ShiftServiceApplication.main(ShiftServiceApplication.java:37) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.5.7.jar:3.5.7]
+Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:431) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:400) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.12.jar:6.2.12]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.12.jar:6.2.12]
+	... 18 common frames omitted
+Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution [Access denied for user 'root'@'localhost' (using password: YES)] [n/a]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:63) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:94) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:74) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:39) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcConnection(ImprovedExtractionContextImpl.java:63) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.internal.exec.ImprovedExtractionContextImpl.getJdbcDatabaseMetaData(ImprovedExtractionContextImpl.java:70) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.extract.internal.InformationExtractorJdbcDatabaseMetaDataImpl.processTableResultSet(InformationExtractorJdbcDatabaseMetaDataImpl.java:65) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.extract.internal.AbstractInformationExtractorImpl.getTables(AbstractInformationExtractorImpl.java:570) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.extract.internal.DatabaseInformationImpl.getTablesInformation(DatabaseInformationImpl.java:122) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:72) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:233) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:112) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:280) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:144) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at java.base/java.util.HashMap.forEach(HashMap.java:1429) ~[na:na]
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:141) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:324) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:463) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1517) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390) ~[spring-orm-6.2.12.jar:6.2.12]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:419) ~[spring-orm-6.2.12.jar:6.2.12]
+	... 22 common frames omitted
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:839) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:415) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.4.0.jar:9.4.0]
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:370) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:207) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111) ~[HikariCP-6.3.3.jar:na]
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:126) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:485) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:46) ~[hibernate-core-6.6.33.Final.jar:6.6.33.Final]
+	... 43 common frames omitted
+2025-11-06 10:01:30.946 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 10:01:31.339 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 10:01:31.459 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 10:01:31.462 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 10:01:31.472 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 10:01:32.610 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 10:01:32.732 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 111 ms. Found 2 JPA repository interfaces.
+2025-11-06 10:01:33.042 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 10:01:33.939 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 10:01:33.953 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 10:01:33.953 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 10:01:34.039 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 10:01:34.039 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2550 ms
+2025-11-06 10:01:34.708 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 10:01:34.754 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 10:01:34.784 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 10:01:35.049 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 10:01:35.073 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 10:01:35.299 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1bfa7ecb
+2025-11-06 10:01:35.301 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 10:01:35.342 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 10:01:35.344 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 10:01:35.358 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 10:01:36.242 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 10:01:36.305 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 10:01:36.596 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 10:01:37.254 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 10:01:37.563 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 10:01:37.682 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 10:01:39.055 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 10:01:40.436 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 10:01:40.552 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 10:01:40.903 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 10:01:40.978 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 10:01:40.982 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 10:01:40.989 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 10:01:41.355 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 10:01:41.357 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 10:01:41.359 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 10:01:41.361 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762403501359 with initial instances count: 7
+2025-11-06 10:01:41.372 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 10:01:41.372 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762403501372, current=UP, previous=STARTING]
+2025-11-06 10:01:41.375 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 10:01:41.395 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8086 (http) with context path '/'
+2025-11-06 10:01:41.396 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8086
+2025-11-06 10:01:41.416 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 10:01:41.417 INFO  c.c.s.ShiftServiceApplication - Started ShiftServiceApplication in 11.101 seconds (process running for 12.001)
+2025-11-06 10:01:41.884 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-06 10:01:41.884 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-06 10:01:41.887 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-11-06 10:03:03.195 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:03.196 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:03.446 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.377 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.381 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.402 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.426 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.426 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.431 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.436 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the getSwapRequestsForEmployee controller method: employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:04.437 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the getSwapRequestsForEmployee service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:37.310 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the createSwapRequest controller method
+2025-11-06 10:03:37.318 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the createSwapRequest service method, createSwapDto:CreateShiftSwapRequestDTO[requesterEmployeeId=31d9bab4-5364-43b1-b86d-2c57a774781e, requestedEmployeeId=148b9de7-df63-4e63-9329-7b3f11a62cbd, offeringShiftId=c56a2aa5-cff6-4419-99fb-7b6f3bba7ddd, requestingShiftId=6879eed4-79b1-4cce-adee-a682437a2b13, reason=Final Swap Request needed]
+2025-11-06 10:03:37.413 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Successfully created new shift swap request with publicId:SSR-Gr50zBLZlL
+2025-11-06 10:03:42.279 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.279 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.282 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the getSwapRequestsForEmployee controller method: employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.282 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the getSwapRequestsForEmployee service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.284 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.297 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.298 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:03:42.304 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 10:04:10.142 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the getTeamSwapRequests controller method: managerId:e1fa28c1-4362-41ab-8ce3-8fe2e4a27c20
+2025-11-06 10:04:10.143 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the getTeamSwapRequests service method, managerId:e1fa28c1-4362-41ab-8ce3-8fe2e4a27c20
+2025-11-06 10:04:10.148 INFO  c.c.s.controller.ShiftController - getTeamShiftByManager managerId=e1fa28c1-4362-41ab-8ce3-8fe2e4a27c20
+2025-11-06 10:04:10.149 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getTeamShiftsByManagerAndDatePicker service method, managerId:e1fa28c1-4362-41ab-8ce3-8fe2e4a27c20, date:2025-11-06
+2025-11-06 10:06:41.005 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:11:41.010 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:16:41.024 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:32:43.343 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m37s620ms254µs500ns).
+2025-11-06 10:35:12.858 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:40:12.870 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:45:12.874 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 10:50:12.885 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:07:58.445 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m14s795ms318µs).
+2025-11-06 11:12:16.075 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:17:16.079 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:22:16.092 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:27:16.103 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:32:16.110 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:37:16.114 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:42:16.121 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:47:16.136 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:52:16.140 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 11:57:16.146 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:02:16.149 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:07:16.158 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:12:16.173 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:14:40.538 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application SHIFT-SERVICE with eureka with status DOWN
+2025-11-06 12:14:40.538 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762411480538, current=DOWN, previous=UP]
+2025-11-06 12:14:40.541 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 12:14:40.597 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 12:14:40.650 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-06 12:14:40.677 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-06 12:14:40.764 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 12:14:40.819 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-06 12:14:40.830 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-06 12:14:40.837 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-06 12:14:43.851 INFO  c.netflix.discovery.DiscoveryClient - Unregistering ...
+2025-11-06 12:14:43.883 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - deregister  status: 200
+2025-11-06 12:14:43.884 INFO  c.netflix.discovery.DiscoveryClient - Completed shut down of DiscoveryClient
+2025-11-06 12:14:48.592 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 12:14:49.264 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 12:14:49.580 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 12:14:49.581 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 12:14:49.605 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 12:15:24.055 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 12:15:24.373 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 302 ms. Found 2 JPA repository interfaces.
+2025-11-06 12:15:24.903 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 12:15:26.131 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 12:15:26.151 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 12:15:26.152 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 12:15:26.241 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 12:15:26.241 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 36588 ms
+2025-11-06 12:15:26.999 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 12:15:27.190 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 12:15:27.273 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 12:15:27.885 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 12:15:27.946 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 12:15:28.383 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f8f7953
+2025-11-06 12:15:28.386 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 12:15:28.559 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 12:15:28.562 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 12:15:28.584 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 12:15:29.908 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 12:15:30.059 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 12:15:30.514 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 12:15:31.347 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 12:15:31.517 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 12:15:31.626 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 12:15:33.013 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 12:15:34.500 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 12:15:34.590 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 12:15:34.695 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 12:15:34.731 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 12:15:34.736 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:15:34.745 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 12:15:34.746 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 12:15:35.045 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 12:15:35.049 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 12:15:35.051 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 12:15:35.053 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762411535052 with initial instances count: 7
+2025-11-06 12:15:35.066 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 12:15:35.067 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762411535067, current=UP, previous=STARTING]
+2025-11-06 12:15:35.068 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 12:15:35.085 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8086 (http) with context path '/'
+2025-11-06 12:15:35.086 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8086
+2025-11-06 12:15:35.107 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 12:15:35.107 INFO  c.c.s.ShiftServiceApplication - Started ShiftServiceApplication in 47.168 seconds (process running for 48.859)
+2025-11-06 12:15:35.757 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-06 12:15:35.757 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-06 12:15:35.759 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-06 12:20:34.756 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:25:34.760 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:30:34.772 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:45:28.140 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m29s325ms444µs600ns).
+2025-11-06 12:47:34.100 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:52:34.112 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 12:57:34.121 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 13:02:34.137 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 13:07:34.147 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 13:12:34.153 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 13:38:51.192 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=25m52s531ms423µs600ns).
+2025-11-06 13:55:35.408 WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s215ms567µs100ns).
+2025-11-06 13:59:16.195 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:04:22.326 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:09:22.337 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:14:18.630 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:18.630 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:18.978 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.846 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.846 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.853 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.857 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the getSwapRequestsForEmployee controller method: employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.858 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the getSwapRequestsForEmployee service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.863 INFO  c.c.s.controller.ShiftController - getEmployeeShifts employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.863 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:20.868 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:14:22.352 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:19:22.364 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:24:22.365 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:29:22.372 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:32:54.639 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Unregistering application SHIFT-SERVICE with eureka with status DOWN
+2025-11-06 14:32:54.640 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762419774640, current=DOWN, previous=UP]
+2025-11-06 14:32:54.640 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 14:32:54.661 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-06 14:32:54.670 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 14:32:54.680 INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-06 14:32:54.715 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 14:32:54.730 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-06 14:32:54.735 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-06 14:32:54.739 INFO  c.netflix.discovery.DiscoveryClient - Shutting down DiscoveryClient ...
+2025-11-06 14:36:31.363 INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-11-06 14:36:32.097 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2025-11-06 14:36:32.343 INFO  o.s.c.c.c.ConfigServicePropertySourceLocator - Located environment: name=shift-service, profiles=[default], label=null, version=null, state=null
+2025-11-06 14:36:32.344 INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: [BootstrapPropertySource {name='bootstrapProperties-configClient'}, BootstrapPropertySource {name='bootstrapProperties-classpath:/configs/shift-service.yaml'}]
+2025-11-06 14:36:32.361 INFO  c.c.s.ShiftServiceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-11-06 14:36:34.176 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-06 14:36:34.329 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 141 ms. Found 2 JPA repository interfaces.
+2025-11-06 14:36:34.739 INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=48756ae6-1c10-3bcf-a191-1decdc4d89fa
+2025-11-06 14:36:35.497 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8086 (http)
+2025-11-06 14:36:35.509 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-06 14:36:35.510 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-06 14:36:35.576 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-06 14:36:35.576 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3187 ms
+2025-11-06 14:36:36.099 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-06 14:36:36.147 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.33.Final
+2025-11-06 14:36:36.179 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-06 14:36:36.434 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-06 14:36:36.462 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-06 14:36:36.715 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@759c3a9e
+2025-11-06 14:36:36.717 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-06 14:36:36.765 WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-06 14:36:36.766 WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-11-06 14:36:36.779 INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-06 14:36:37.749 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-06 14:36:37.832 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-06 14:36:38.151 INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-06 14:36:38.882 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-06 14:36:39.029 WARN  o.s.b.d.a.OptionalLiveReloadServer - Unable to start LiveReload server
+2025-11-06 14:36:39.124 INFO  o.s.c.o.FeignClientFactoryBean - For 'employee-service' URL not provided. Will try picking an instance via load-balancing.
+2025-11-06 14:36:40.539 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 28 endpoints beneath base path '/actuator'
+2025-11-06 14:36:41.978 INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2025-11-06 14:36:42.057 WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2025-11-06 14:36:42.166 INFO  o.s.c.n.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2025-11-06 14:36:42.191 INFO  c.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2025-11-06 14:36:42.195 INFO  c.n.d.s.r.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Disable delta property : false
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Application is null : false
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Application version is -1: true
+2025-11-06 14:36:42.205 INFO  c.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2025-11-06 14:36:42.471 INFO  c.netflix.discovery.DiscoveryClient - The response status is 200
+2025-11-06 14:36:42.474 INFO  c.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2025-11-06 14:36:42.476 INFO  c.n.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2025-11-06 14:36:42.478 INFO  c.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1762420002478 with initial instances count: 5
+2025-11-06 14:36:42.493 INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application SHIFT-SERVICE with eureka with status UP
+2025-11-06 14:36:42.494 INFO  c.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1762420002494, current=UP, previous=STARTING]
+2025-11-06 14:36:42.496 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086: registering service...
+2025-11-06 14:36:42.517 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8086 (http) with context path '/'
+2025-11-06 14:36:42.518 INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8086
+2025-11-06 14:36:42.544 INFO  c.c.s.ShiftServiceApplication - Started ShiftServiceApplication in 12.211 seconds (process running for 13.935)
+2025-11-06 14:36:42.544 INFO  c.netflix.discovery.DiscoveryClient - DiscoveryClient_SHIFT-SERVICE/10.112.35.158:8086 - registration status: 204
+2025-11-06 14:36:43.092 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-06 14:36:43.093 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-06 14:36:43.095 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-06 14:37:04.072 INFO  c.c.s.controller.ShiftController - Invoked the getEmployeeShifts controller method, employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:04.072 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:04.222 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.622 INFO  c.c.s.controller.ShiftController - Invoked the getEmployeeShifts controller method, employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.624 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.630 INFO  c.c.s.c.ShiftSwapRequestController - Invoked the getSwapRequestsForEmployee controller method: employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.630 INFO  c.c.s.s.i.ShiftSwapRequestServiceImpl - Invoked the getSwapRequestsForEmployee service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.631 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.648 INFO  c.c.s.controller.ShiftController - Invoked the getEmployeeShifts controller method, employeeId=31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.648 INFO  c.c.s.service.impl.ShiftServiceImpl - Invoked the getEmployeeShifts service method, employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e
+2025-11-06 14:37:39.658 INFO  c.c.s.service.impl.ShiftServiceImpl - Returning 6 shifts for employeeId:31d9bab4-5364-43b1-b86d-2c57a774781e

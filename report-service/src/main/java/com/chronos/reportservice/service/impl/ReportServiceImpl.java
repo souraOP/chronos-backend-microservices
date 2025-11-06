@@ -10,7 +10,7 @@ import com.chronos.reportservice.feign.AttendanceServiceClient;
 import com.chronos.reportservice.feign.EmployeeServiceClient;
 import com.chronos.reportservice.repository.ReportRepository;
 import com.chronos.reportservice.service.ReportService;
-import org.springframework.data.domain.PageRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +24,7 @@ import static com.chronos.reportservice.util.ReportIdGenerator.generateReportId;
 import static com.chronos.reportservice.util.RoundOffToTwo.round2;
 import static com.chronos.reportservice.util.mapper.ReportMapper.toDto;
 
+@Slf4j
 @Service
 public class ReportServiceImpl implements ReportService {
     private final ReportRepository reportRepository;
@@ -43,8 +44,9 @@ public class ReportServiceImpl implements ReportService {
     @Override
     @Transactional
     public ReportResponseDTO generatedReportForManager(String managerId, LocalDate startDate, LocalDate endDate) {
-        // fetching the team memebers from the employee service
+        log.info("Invoked the generatedReportForManager service method, managerId:{}, startDate:{}, endDate:{}", managerId, startDate, endDate);
 
+        // fetching the team members from the employee service
         List<EmployeeDTO> members = employeeServiceClient.getTeamMembers(managerId);
         if (members == null || members.isEmpty()) {
             throw new IllegalStateException(ErrorConstants.MANAGER_WITH_NO_TEAM);
@@ -109,7 +111,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<ReportResponseDTO> getRecentReportsForManager(String managerId, int size) {
+    public List<ReportResponseDTO> getRecentReportsForManager(String managerId) {
+        log.info("Invoked the getRecentReportsForManager service method, managerId:{}", managerId);
 
         List<EmployeeDTO> members = employeeServiceClient.getTeamMembers(managerId);
         if(members == null || members.isEmpty()) {
@@ -122,12 +125,13 @@ public class ReportServiceImpl implements ReportService {
         }
 
 
-        return getRecentReportsForTeam(teamId, size);
+        return getRecentReportsForTeam(teamId);
     }
 
     @Override
-    public List<ReportResponseDTO> getRecentReportsForTeam(String teamId, int size) {
-        return reportRepository.findByTeamIdOrderByGeneratedAtDesc(teamId, PageRequest.of(0, Math.max(1, size)))
+    public List<ReportResponseDTO> getRecentReportsForTeam(String teamId) {
+        log.info("Invoked the getRecentReportsForTeam service method, teamId:{}", teamId);
+        return reportRepository.findByTeamIdOrderByGeneratedAtDesc(teamId)
                 .stream().map(s -> toDto(s)).toList();
     }
 }

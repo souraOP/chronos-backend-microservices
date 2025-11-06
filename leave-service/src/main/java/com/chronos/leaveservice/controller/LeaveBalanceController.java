@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ import java.util.List;
         name = "LeaveBalance CRUD Rest API",
         description = "REST APIs - Get Leave Balances by Employee, Create Leave Balance"
 )
-
+@Slf4j
 @RestController
 @RequestMapping("/api/leave-balances")
 public class LeaveBalanceController {
@@ -44,6 +45,7 @@ public class LeaveBalanceController {
     })
     @GetMapping("/employees/{employeeId}")
     public ResponseEntity<List<LeaveBalanceResponseDTO>> getLeaveBalanceByEmployeeId(@PathVariable String employeeId) {
+        log.info("Invoked the GET: getLeaveBalanceByEmployeeId controller method, employeeId:{}", employeeId);
         List<LeaveBalanceResponseDTO> balances = leaveBalanceService.getLeaveBalancesByEmployeeId(employeeId);
         return new ResponseEntity<>(balances, HttpStatus.OK);
     }
@@ -61,6 +63,7 @@ public class LeaveBalanceController {
     })
     @PostMapping("/employees/{employeeId}")
     public ResponseEntity<LeaveBalanceDTO> createLeaveBalance(@PathVariable String employeeId, @RequestParam LeaveType leaveType, @RequestParam int leaveBalance) {
+        log.info("Invoked the POST: createLeaveBalance controller method, employeeId:{}, leaveType:{}, leaveBalance:{}", employeeId, leaveType, leaveBalance);
         LeaveBalanceDTO createdLeaveBalance = leaveBalanceService.createLeaveBalance(employeeId, leaveType, leaveBalance);
         return new ResponseEntity<>(createdLeaveBalance, HttpStatus.CREATED);
     }

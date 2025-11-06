@@ -20,6 +20,7 @@ import com.chronos.shiftservice.repository.ShiftRepository;
 import com.chronos.shiftservice.repository.ShiftSwapRepository;
 import com.chronos.shiftservice.service.ShiftSwapRequestService;
 import com.chronos.shiftservice.utils.mappers.ShiftSwapMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ import java.util.stream.Collectors;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
-
+@Slf4j
 @Service
 public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     private final ShiftSwapRepository shiftSwapRepository;
@@ -50,6 +51,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     @Override
     @Transactional
     public ShiftSwapResponseDTO createSwapRequest(CreateShiftSwapRequestDTO createSwapDto) {
+        log.info("Invoked the createSwapRequest service method, createSwapDto:{}", createSwapDto);
         if (createSwapDto.requesterEmployeeId() == null) {
             throw new ShiftSwapRequestException(ErrorConstants.REQUESTER_NOT_FOUND);
         }
@@ -129,6 +131,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
         shiftSwapEntity.setApprovedDate(null);
 
         ShiftSwapRequest savedSwap = shiftSwapRepository.save(shiftSwapEntity);
+        log.info("Successfully created new shift swap request with publicId:{}", savedSwap.getPublicId());
 
         String requesterName = buildName(requester);
         String requestedName = buildName(requested);
@@ -139,8 +142,8 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
 
     @Override
     public List<ShiftSwapQueryResponseDTO> getSwapRequestsForEmployee(String employeeId) {
+        log.info("Invoked the getSwapRequestsForEmployee service method, employeeId:{}", employeeId);
         UUID requesterOrRequestedID = parseUUID(employeeId, UuidErrorConstants.INVALID_REQUESTER_OR_REQUESTED_ID);
-
 
         List<ShiftSwapRequest> list = shiftSwapRepository.findSwapRequestsByEmployee(requesterOrRequestedID);
 
@@ -159,6 +162,8 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
 
     @Override
     public List<ShiftSwapQueryResponseDTO> getTeamSwapRequests(String managerId) {
+        log.info("Invoked the getTeamSwapRequests service method, managerId:{}", managerId);
+
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
         List<UUID> empIds = team.stream().map(EmployeeDTO::id).toList();
 
@@ -186,6 +191,7 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     @Override
     @Transactional
     public ShiftSwapResponseDTO approveSwapRequest(String managerId, String swapRequestId) {
+        log.info("Invoked the approveSwapRequest service method, managerId:{}, swapRequestId:{}", managerId, swapRequestId);
         UUID swapReqID = parseUUID(swapRequestId, UuidErrorConstants.INVALID_SWAP_REQUEST_ID);
 
         ShiftSwapRequest shiftSwapRequest = shiftSwapRepository.findById(swapReqID)
@@ -201,26 +207,23 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
             throw new IllegalStateException(ErrorConstants.MANAGER_WITH_NO_TEAM);
         }
 
-        // get the offering and requesting shift
         Shift offeringShift = shiftSwapRequest.getOfferingShift();
         Shift requestingShift = shiftSwapRequest.getRequestingShift();
 
-        // then just get the employees from the request
         UUID requesterId = shiftSwapRequest.getRequesterEmployeeId();
         UUID requestedId = shiftSwapRequest.getRequestedEmployeeId();
 
-        // after that just swap the requests
+        // swapping the requests..
         offeringShift.setEmployeeId(requestedId);
         requestingShift.setEmployeeId(requesterId);
         offeringShift.setShiftStatus(ShiftStatus.CONFIRMED);
         requestingShift.setShiftStatus(ShiftStatus.CONFIRMED);
 
-        // finally save that using the repo
+        // saving it in the database......
         shiftRepository.save(offeringShift);
         shiftRepository.save(requestingShift);
 
 
-        // .. then just mark that swap request as approved by setting the required values
         shiftSwapRequest.setStatus(ShiftSwapRequestStatus.APPROVED);
         shiftSwapRequest.setApprovedBy(parseUUID(managerId, UuidErrorConstants.INVALID_MANAGER_UUID));
         shiftSwapRequest.setApprovedDate(OffsetDateTime.now());
@@ -238,6 +241,8 @@ public class ShiftSwapRequestServiceImpl implements ShiftSwapRequestService {
     @Override
     @Transactional
     public ShiftSwapResponseDTO rejectSwapRequest(String managerId, String swapRequestId) {
+        log.info("Invoked the rejectSwapRequest service method, managerId:{}, swapRequestId:{}", managerId, swapRequestId);
+
         UUID swapReqID = parseUUID(swapRequestId, UuidErrorConstants.INVALID_SWAP_REQUEST_ID);
 
         ShiftSwapRequest shiftSwapRequest = shiftSwapRepository.findById(swapReqID)

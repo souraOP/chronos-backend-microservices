@@ -15,6 +15,7 @@ import com.chronos.leaveservice.feign.EmployeeClient;
 import com.chronos.leaveservice.repository.LeaveBalanceRepository;
 import com.chronos.leaveservice.repository.LeaveRequestRepository;
 import com.chronos.leaveservice.util.mapper.LeaveRequestMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,7 @@ import static com.chronos.common.util.ParseUUID.parseUUID;
 import static com.chronos.leaveservice.util.CalculateLeaveRequestDays.getLeaveRequestDays;
 
 
+@Slf4j
 @Service
 public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service.LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
@@ -46,6 +48,7 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
     @Transactional
     @Override
     public LeaveRequestResponseDTO createLeaveRequest(String employeeId, LeaveRequestCreateRequestDTO request) {
+        log.info("Invoked the createLeaveRequest service method, employeeId:{}, leaveRequestCreateRequestDTO:{}", employeeId, request);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         EmployeeDTO employee = employeeClient.getEmployeeById(employeeId);
@@ -84,6 +87,7 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public List<LeaveRequestResponseDTO> getEmployeeLeaveRequests(String employeeId) {
+        log.info("Invoked the getEmployeeLeaveRequests service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         List<LeaveRequest> leaveRequests = leaveRequestRepository.findLeaveRequestsByEmployeeId(empID);
@@ -100,6 +104,8 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public List<ManagerLeaveRequestDTO> getTeamLeaveRequests(String managerId) {
+        log.info("Invoked the getTeamLeaveRequests service method, managerId:{}", managerId);
+
         List<EmployeeDTO> teamMembers = employeeClient.getTeamMembers(managerId);
 
         if(teamMembers == null || teamMembers.isEmpty()) {
@@ -132,6 +138,7 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
     @Override
     @Transactional
     public void actionOnLeaveRequest(String managerId, String requestId, LeaveRequestActionDTO leaveRequestActionDTO) {
+        log.info("Invoked the actionOnLeaveRequest service method, managerId:{}, requestId:{}, leaveRequestActionDTO:{}", managerId, requestId, leaveRequestActionDTO);
         UUID leaveRequestID = parseUUID(requestId, UuidErrorConstants.INVALID_LEAVE_REQUEST_ID);
 
         LeaveRequest lr = leaveRequestRepository.findById(leaveRequestID)
@@ -185,6 +192,7 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public ManagerLeaveRequestDataDTO getLeaveRequestsStatsByManager(String managerId) {
+        log.info("Invoked the getLeaveRequestsStatsByManager service method, managerId:{}", managerId);
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
 
         if(team == null || team.isEmpty()){
@@ -205,6 +213,8 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public List<ManagerLeaveRequestDashboardResponseDTO> getLeaveRequestManagerDashboard(String managerId) {
+        log.info("Invoked the getLeaveRequestManagerDashboard service method, managerId:{}", managerId);
+
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
 
         if(team == null || team.isEmpty()) {
@@ -234,6 +244,7 @@ public class LeaveRequestServiceImpl implements com.chronos.leaveservice.service
 
     @Override
     public List<EmployeeLeaveRequestDashboardResponseDTO> getLeaveRequestEmployeeDashboard(String employeeId) {
+        log.info("Invoked the getLeaveRequestEmployeeDashboard service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
         return leaveRequestRepository.leaveRequestEmployeeDashboard(empID);
     }

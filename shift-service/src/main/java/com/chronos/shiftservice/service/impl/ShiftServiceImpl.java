@@ -18,6 +18,7 @@ import com.chronos.shiftservice.repository.ShiftRepository;
 import com.chronos.shiftservice.service.ShiftService;
 import com.chronos.shiftservice.utils.mappers.ShiftMapper;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,7 @@ import java.util.stream.Collectors;
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
 
+@Slf4j
 @Service
 public class ShiftServiceImpl implements ShiftService {
     private final ShiftRepository shiftRepository;
@@ -49,6 +51,7 @@ public class ShiftServiceImpl implements ShiftService {
     @Override
     @Transactional
     public ShiftResponseDTO createShift(CreateShiftDateRequestDTO shiftDTO, String managerId) {
+        log.info("Invoked the createShift service method, shiftDTO:{}, managerId:{}", shiftDTO, managerId);
         UUID empID = shiftDTO.employeeId();
 
         List<EmployeeDTO> teamMembers = employeeClient.getTeamMembers(managerId);
@@ -99,16 +102,20 @@ public class ShiftServiceImpl implements ShiftService {
 
         Shift savedShift = shiftRepository.save(shift);
 
+        log.info("Created new shift with publicId:{}", savedShift.getPublicId());
+
         return ShiftMapper.shiftEntityToDto(savedShift);
     }
 
     @Override
     public List<ShiftResponseDTO> getEmployeeShifts(String employeeId) {
+        log.info("Invoked the getEmployeeShifts service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         List<Shift> shifts = shiftRepository.findShiftByEmployeeIdAndDateAsc(empID)
                 .orElseThrow(() -> new ShiftNotFoundException(ErrorConstants.SHIFT_NOT_FOUND));
 
+        log.info("Returning {} shifts for employeeId:{}", shifts.size(), empID);
         return shifts.stream().map(s -> new ShiftResponseDTO(
                 s.getId(),
                 s.getPublicId(),
@@ -124,6 +131,7 @@ public class ShiftServiceImpl implements ShiftService {
     @Override
     @CircuitBreaker(name="employee-service", fallbackMethod="getDefaultTeamShiftByManager")
     public List<ShiftResponseDTO> getTeamsShiftByManager(String managerId) {
+        log.info("Invoked the getTeamsShiftByManager service method, managerId:{}", managerId);
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
 
         if (team.isEmpty()) {
@@ -142,6 +150,7 @@ public class ShiftServiceImpl implements ShiftService {
 
     @Override
     public List<TeamShiftTableRowDTO> getTeamShiftsByManagerAndDatePicker(String managerId, LocalDate date) {
+        log.info("Invoked the getTeamShiftsByManagerAndDatePicker service method, managerId:{}, date:{}", managerId, date);
         List<EmployeeDTO> team = employeeClient.getTeamMembers(managerId);
         if (team.isEmpty()) {
             throw new ResourceNotFoundException(ErrorConstants.MANAGER_WITH_NO_TEAM);
@@ -174,7 +183,7 @@ public class ShiftServiceImpl implements ShiftService {
 
 
     public List<ShiftResponseDTO> getDefaultTeamShiftByManager(String managerId, Throwable t){
-        System.err.println("Circuit Breaker triggered for Employee Client call. Reason: " + t.getMessage());
+        log.error("Circuit Breaker triggered for Employee Client call. Reason: {}", t.getMessage());
         return Collections.emptyList();
     }
 }

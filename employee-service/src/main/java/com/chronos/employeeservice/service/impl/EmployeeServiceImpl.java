@@ -11,6 +11,7 @@ import com.chronos.employeeservice.entity.Employee;
 import com.chronos.employeeservice.repository.EmployeeRepository;
 import com.chronos.employeeservice.service.EmployeeService;
 import com.chronos.employeeservice.util.mappers.EmployeeMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +24,13 @@ import java.util.UUID;
 
 import static com.chronos.common.util.ParseUUID.parseUUID;
 
-
+@Slf4j
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeServiceImpl(
-            EmployeeRepository employeeRepository
-    ) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
@@ -40,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
+        log.info("Invoked the createEmployee service method, employeeDTO:{}", employeeDTO);
         Employee employee = EmployeeMapper.employeeDtoToEntity(employeeDTO);
         Employee savedEmployee = employeeRepository.save(employee);
         return EmployeeMapper.employeeEntityToDto(savedEmployee);
@@ -48,6 +48,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     // getting employee by their id
     @Override
     public EmployeeDTO getEmployeeById(String employeeID) {
+        log.info("Invoked the getEmployeeById service method, employeeID:{}", employeeID);
+
         UUID empID = parseUUID(employeeID, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         return employeeRepository.findEmployeeByID(empID)
@@ -56,6 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO getEmployeeByDisplayId(String displayEmployeeId) {
+        log.info("Invoked the getEmployeeByDisplayId service method, displayEmployeeID:{}", displayEmployeeId);
         Employee emp = employeeRepository.findByDisplayEmployeeId(displayEmployeeId)
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.EMP_FETCH_TERMINATED_NOT_FOUND));
 
@@ -65,6 +68,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     // getting all the employees
     @Override
     public List<EmployeeDTO> getAllEmployees() {
+        log.info("Invoked the getAllEmployees service method");
         List<EmployeeDTO> employeeDTOS = new ArrayList<>();
         for (Employee employee : employeeRepository.findAll()) {
             employeeDTOS.add(EmployeeMapper.employeeEntityToDto(employee));
@@ -76,6 +80,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDTO updateEmployee(String employeeID, EmployeeDTO employeeDTO) {
+        log.info("Invoked the updateEmployee service method, employeeID:{}, employeeDTO:{}", employeeID, employeeDTO);
         UUID empID = parseUUID(employeeID, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         Employee employee = employeeRepository.findById(empID)
@@ -92,6 +97,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public EmployeeDTO patchEmployee(String employeeId, Map<String, Object> updates) {
+        log.info("Invoked the patchEmployee service method, employeeID:{}, updates:{}", employeeId, updates);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
         EmployeeDTO employee = employeeRepository.findEmployeeByID(empID)
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.EMPLOYEE_NOT_FOUND));
@@ -118,6 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public void deleteEmployee(String employeeId) {
+        log.info("Invoked the deleteEmployee service method, employeeId:{}", employeeId);
         UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
         if (!employeeRepository.existsById(empID)) {
@@ -129,15 +136,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeNameResponseDTO getEmployeeName(String employeeId) {
-        try {
-            UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
+        log.info("Invoked the getEmployeeName service method, employeeId:{}", employeeId);
+        UUID empID = parseUUID(employeeId, UuidErrorConstants.INVALID_EMPLOYEE_UUID);
 
-            employeeRepository.findById(empID)
-                    .orElseThrow(() -> new RuntimeException(ErrorConstants.EMPLOYEE_NOT_FOUND));
+        employeeRepository.findById(empID)
+                .orElseThrow(() -> new RuntimeException(ErrorConstants.EMPLOYEE_NOT_FOUND));
 
-            return employeeRepository.findEmployeeName(empID);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(ErrorConstants.EMPLOYEE_NOT_FOUND);
-        }
+        return employeeRepository.findEmployeeName(empID);
     }
 }
