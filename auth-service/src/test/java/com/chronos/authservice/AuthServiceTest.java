@@ -3,6 +3,7 @@ package com.chronos.authservice;
 import com.chronos.authservice.dto.*;
 import com.chronos.authservice.entity.LoginCredential;
 import com.chronos.authservice.repository.LoginRepository;
+import com.chronos.authservice.repository.projections.LoginByEmailView;
 import com.chronos.authservice.service.LoginServiceImpl;
 import com.chronos.authservice.service.auth.JwtService;
 import com.chronos.common.constants.LoginConstants;
@@ -146,13 +147,26 @@ class AuthServiceTest {
         LoginCredential cred = credential(Role.EMPLOYEE);
         cred.setEmail(email);
 
-        when(loginRepository.findByEmailView(email)).thenReturn(Optional.of(cred));
+        LoginByEmailView view = mock(LoginByEmailView.class);
+        when(view.getLoginId()).thenReturn(cred.getLoginCredentialId());
+        when(view.getEmail()).thenReturn(cred.getEmail());
+        when(view.getPasswordHash()).thenReturn(cred.getPasswordHash());
+        when(view.getDisplayEmployeeId()).thenReturn(cred.getDisplayEmployeeId());
+        when(view.getRole()).thenReturn(cred.getRole());
+
+        when(loginRepository.findByEmailView(email)).thenReturn(Optional.of(view));
 
         GetAllLoginCredentialsDTO out = service.getLoginCredentialsByEmail(email);
 
         assertNotNull(out);
+        assertEquals(cred.getEmail(), out.email());
+        assertEquals(cred.getLoginCredentialId(), out.loginCredentialId());
+        assertEquals(cred.getPasswordHash(), out.passwordHash());
+        assertEquals(cred.getDisplayEmployeeId(), out.employeeId());
+        assertEquals(cred.getRole(), out.role());
         verify(loginRepository).findByEmailView(email);
     }
+
 
     @Test
     void changePassword_success_updatesAndReturnsMessage() {

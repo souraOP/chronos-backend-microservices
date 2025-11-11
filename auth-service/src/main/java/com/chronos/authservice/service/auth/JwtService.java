@@ -36,7 +36,7 @@ public class JwtService {
                 .claims(claims)
                 .subject(user.getUsername())
                 .issuedAt(new Date(now))
-                .expiration(new Date(now + 1000L * 60 * 30)) // token valid till 30 mins
+                .expiration(new Date(now + 1000L * 60 * 50)) // token valid till 30 mins
                 .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
     }
