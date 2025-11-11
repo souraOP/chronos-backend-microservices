@@ -5,6 +5,7 @@ import com.chronos.authservice.dto.*;
 import com.chronos.authservice.entity.LoginCredential;
 import com.chronos.authservice.feign.EmployeeClient;
 import com.chronos.authservice.repository.LoginRepository;
+import com.chronos.authservice.repository.projections.LoginByEmailView;
 import com.chronos.authservice.service.auth.JwtService;
 import com.chronos.authservice.service.interfaces.LoginService;
 import com.chronos.authservice.util.LoginMapper;
@@ -126,10 +127,10 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email) {
         log.info("Invoked the getLoginCredentialsByEmail service method, email:{}", email);
-        LoginCredential loginCredential = loginRepository.findByEmailView(email)
+        LoginByEmailView loginCredential = loginRepository.findByEmailView(email)
                 .orElseThrow(() -> new RuntimeException(ErrorConstants.LOGIN_CREDENTIALS_NOT_FOUND + email));
 
-        return LoginMapper.loginEntityToDto(loginCredential);
+        return LoginMapper.loginViewToDto(loginCredential);
     }
 
     @Override

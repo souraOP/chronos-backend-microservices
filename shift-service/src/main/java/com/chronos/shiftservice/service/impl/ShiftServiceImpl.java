@@ -8,7 +8,6 @@ import com.chronos.common.dto.EmployeeDTO;
 import com.chronos.common.exception.custom.ResourceNotFoundException;
 import com.chronos.common.exception.custom.ShiftNotFoundException;
 import com.chronos.common.util.NanoIdGenerator;
-import com.chronos.shiftservice.dto.shift.CreateNewShiftDTO;
 import com.chronos.shiftservice.dto.shift.CreateShiftDateRequestDTO;
 import com.chronos.shiftservice.dto.shift.ShiftResponseDTO;
 import com.chronos.shiftservice.dto.shift.TeamShiftTableRowDTO;
@@ -63,24 +62,12 @@ public class ShiftServiceImpl implements ShiftService {
         // have to convert it from iso8601 date
         // to offsetdatetime
         ZoneId zone = ZoneId.systemDefault();
-
-        LocalDate shiftDate = shiftDTO.shiftDate().atStartOfDay().toLocalDate();
         OffsetDateTime shiftStart = shiftDTO.shiftDate().atTime(shiftDTO.shiftStartTime()).atZone(zone).toOffsetDateTime();
         OffsetDateTime shiftEnd = shiftDTO.shiftDate().atTime(shiftDTO.shiftEndTime()).atZone(zone).toOffsetDateTime();
 
         if (shiftEnd.isBefore(shiftStart)) {
             throw new IllegalArgumentException(ErrorConstants.INVALID_SHIFT_TIMING);
         }
-
-        CreateNewShiftDTO offsetShiftDTO = new CreateNewShiftDTO(
-                shiftDTO.employeeId(),
-                shiftDate,
-                shiftStart,
-                shiftEnd,
-                ShiftStatus.CONFIRMED,
-                shiftDTO.shiftType(),
-                shiftDTO.shiftLocation()
-        );
 
         Shift shift = new Shift();
 
@@ -92,13 +79,13 @@ public class ShiftServiceImpl implements ShiftService {
         );
 
         shift.setPublicId("SH-" + nanoId);
-        shift.setEmployeeId(offsetShiftDTO.employeeId());
-        shift.setShiftDate(offsetShiftDTO.shiftDate());
-        shift.setShiftStartTime(offsetShiftDTO.shiftStartTime());
-        shift.setShiftEndTime(offsetShiftDTO.shiftEndTime());
-        shift.setShiftType(offsetShiftDTO.shiftType());
-        shift.setShiftStatus(offsetShiftDTO.shiftStatus());
-        shift.setShiftLocation(offsetShiftDTO.shiftLocation());
+        shift.setEmployeeId(shiftDTO.employeeId());
+        shift.setShiftDate(shiftDTO.shiftDate());
+        shift.setShiftStartTime(shiftStart);
+        shift.setShiftEndTime(shiftEnd);
+        shift.setShiftType(shiftDTO.shiftType());
+        shift.setShiftStatus(ShiftStatus.CONFIRMED);
+        shift.setShiftLocation(shiftDTO.shiftLocation());
 
         Shift savedShift = shiftRepository.save(shift);
 
@@ -183,7 +170,7 @@ public class ShiftServiceImpl implements ShiftService {
 
 
     public List<ShiftResponseDTO> getDefaultTeamShiftByManager(String managerId, Throwable t){
-        log.error("Circuit Breaker triggered for Employee Client call. Reason: {}", t.getMessage());
+        log.error("Circuit Breaker triggered for Employee Client call. Reason: {}, passed managerId:{}", managerId, t.getMessage());
         return Collections.emptyList();
     }
 }

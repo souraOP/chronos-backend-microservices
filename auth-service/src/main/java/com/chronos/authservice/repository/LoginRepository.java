@@ -1,6 +1,7 @@
 package com.chronos.authservice.repository;
 
 import com.chronos.authservice.entity.LoginCredential;
+import com.chronos.authservice.repository.projections.LoginByEmailView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,5 +20,5 @@ public interface LoginRepository extends JpaRepository<LoginCredential, UUID> {
             from LoginCredential l
                 where l.email = :email
             """)
-    Optional<LoginCredential> findByEmailView(@Param("email") String email);
+    Optional<LoginByEmailView> findByEmailView(@Param("email") String email);
 }
