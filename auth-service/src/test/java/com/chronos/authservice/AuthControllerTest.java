@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "spring.cloud.config.enabled=false",
         "eureka.client.enabled=false"
 })
-class LoginControllerTest {
+class AuthControllerTest {
 
     @Autowired
     MockMvc mockMvc;
