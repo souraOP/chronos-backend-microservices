@@ -9,8 +9,6 @@ public interface LoginService {
 
     CreateLoginCredentialResponseDTO createLoginCredentials(CreateLoginCredentialDTO createLoginCredentialDTO);
 
-//    List<GetAllLoginCredentialsDTO> getAllLoginCredentials();
-
     GetAllLoginCredentialsDTO getLoginCredentialsByEmail(String email);
 
     ChangePasswordResponseDTO changePassword(String email, ChangePasswordDTO newPassword);
