@@ -145,8 +145,7 @@ public class LoginController {
      * Security: Open endpoint.
      * <p>
      * <strong>Note:</strong> This endpoint is for development purposes only and is not part of
-     * the Software Requirements Specification (SRS) document. In production, user credentials
-     * should be created through a secure administrative interface with proper authorization.
+     * the Software Requirements Specification (SRS) document.
      * <p>
      * The password provided in the request is automatically hashed using bcrypt before storage.
      * The role (EMPLOYEE/MANAGER) must be specified in the request.
