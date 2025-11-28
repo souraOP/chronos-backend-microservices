@@ -25,43 +25,51 @@ public class GlobalExceptionHandler {
             LeaveBalanceNotFoundException.class,
             ActiveAttendanceNotFoundException.class
     })
-    public ResponseEntity<?> handleResourceNotFound(RuntimeException e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", OffsetDateTime.now());
-        body.put("status", HttpStatus.NOT_FOUND.toString());
-        body.put("error", ErrorConstants.RESOURCE_NOT_FOUND);
-        body.put("message", e.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> handleResourceNotFound(RuntimeException e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.NOT_FOUND.toString(),
+                ErrorConstants.RESOURCE_NOT_FOUND,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(DuplicateLeaveBalanceFound.class)
-    public ResponseEntity<?> handleDuplicateResource(DuplicateLeaveBalanceFound e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", OffsetDateTime.now());
-        body.put("status", HttpStatus.CONFLICT.toString());
-        body.put("error", ErrorConstants.DUPLICATE_RESOURCE_FOUND);
-        body.put("message", e.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    public ResponseEntity<?> handleDuplicateResource(DuplicateLeaveBalanceFound e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.CONFLICT.toString(),
+                ErrorConstants.DUPLICATE_RESOURCE_FOUND,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
     }
 
     @ExceptionHandler(LoginFailedException.class)
-    public ResponseEntity<?> handleLoginFailed(LoginFailedException e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", OffsetDateTime.now());
-        body.put("status", HttpStatus.UNAUTHORIZED.toString());
-        body.put("error", "Unauthorized personnel!");
-        body.put("message", e.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<?> handleLoginFailed(LoginFailedException e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.UNAUTHORIZED.toString(),
+                ErrorConstants.UNAUTHORIZED_PERSONNEL,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 
     @ExceptionHandler(InvalidLeaveRequestException.class)
-    public ResponseEntity<?> handleInvalidLeaveRequest(InvalidLeaveRequestException e){
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", OffsetDateTime.now());
-        body.put("status", HttpStatus.NOT_ACCEPTABLE.toString());
-        body.put("error", ErrorConstants.INVALID_LEAVE_REQUESTS);
-        body.put("message", e.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.NOT_ACCEPTABLE);
+    public ResponseEntity<?> handleInvalidLeaveRequest(InvalidLeaveRequestException e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.NOT_ACCEPTABLE.toString(),
+                ErrorConstants.INVALID_LEAVE_REQUESTS,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(errorResponse);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -75,34 +83,48 @@ public class GlobalExceptionHandler {
         e.getBindingResult().getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
 
         body.put("message", errors);
-
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidUUIDException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<?> handleBadRequests(InvalidUUIDException e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.BAD_REQUEST.toString(),
+                ErrorConstants.INVALID_UUID_ERROR,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+
     @ExceptionHandler({
-            InvalidUUIDException.class,
             PasswordDoNotMatchException.class,
             ActiveAttendanceExistsException.class,
     })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<?> handleBadRequests(RuntimeException e, WebRequest request) {
+    public ResponseEntity<?> handleBadRequests(PasswordDoNotMatchException e, WebRequest request) {
         ErrorResponse errorResponse = new ErrorResponse(
                 OffsetDateTime.now(),
                 HttpStatus.BAD_REQUEST.toString(),
+                ErrorConstants.NEW_PASSWORD_CONFIRM_PASSWORD_NOT_MATCH,
                 e.getMessage(),
                 request.getDescription(false)
-
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGeneralException(Exception e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("timestamp", OffsetDateTime.now());
-        body.put("status", HttpStatus.BAD_REQUEST.toString());
-        body.put("error", "BAD REQUEST");
-        body.put("message", e.getMessage());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> handleGeneralException(Exception e, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                OffsetDateTime.now(),
+                HttpStatus.BAD_REQUEST.toString(),
+                ErrorConstants.BASE_ERROR,
+                e.getMessage(),
+                request.getDescription(false)
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
     }
 }
