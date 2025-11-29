@@ -21,6 +21,8 @@ public class ErrorConstants {
 
     public static final String LOGIN_CREDENTIALS_NOT_FOUND = "Login credentials not found for this email: ";
 
+    public static final String UNAUTHORIZED_PERSONNEL = "Unauthorized personnel!";
+
     public static final String NEW_PASSWORD_CONFIRM_PASSWORD_NOT_MATCH = "New Password and Confirm Passwords do not match !";
 
     public static final String EMPLOYEE_WITH_NO_TEAM = "Employee does not belong to any team";
@@ -80,4 +82,6 @@ public class ErrorConstants {
     public static final String ALREADY_CHECKED_IN = "Employee already clocked in";
 
     public static final String CANNOT_SWAP_WITH_MANAGER = "Cannot swap with manager";
+
+    public static final String BASE_ERROR = "Exception class is thrown";
 }
